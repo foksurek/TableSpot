@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TableSpot.Contexts;
+using TableSpot.Interfaces;
+using TableSpot.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(o => o.UseMySQL(builder.Configuration.GetConnectionString("MySqlConnection")!));
+builder.Services.AddTransient<IRestaurantService, RestaurantService>();
 
 var app = builder.Build();
 
