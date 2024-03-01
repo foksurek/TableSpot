@@ -13,6 +13,8 @@ public class RestaurantDto
     //TODO: Save image and save file path in database instead of saving the image in the database
     // Eventually, get favicon from resturant website if it exists
     [Required] public string ImageUrl { get; set; }
+    [ForeignKey("Category")] public int CategoryId { get; set; }
+    public CategoryDto Category { get; set; } = null!;
     public string? Email { get; set; }
     public string? Website { get; set; }
     public string? PhoneNumber { get; set; }
