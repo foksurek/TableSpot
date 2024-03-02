@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TableSpot.Contexts;
 using TableSpot.Interfaces;
@@ -18,7 +19,6 @@ public class RestaurantController(
     [HttpGet("GetAll")]
     public async Task<ActionResult> GetAllRestaurants(int limit = 10, int offset = 0)
     {
-        // Check if limit and offset are greater than 0
         if (limit < 0 || offset < 0) return BadRequest("Limit and offset must be greater than 0");
         if (limit > 100) return BadRequest("Limit must be less than 100");
         
@@ -26,7 +26,7 @@ public class RestaurantController(
     }
     
     [HttpGet("GetById")]
-    public async Task<ActionResult> GetRestaurantById(int id)
+    public async Task<ActionResult> GetRestaurantById([Required]int id)
     {
         var data = await restaurantService.GetRestaurantById(id);
         if (data == null) return NotFound("Restaurant not found");
@@ -35,7 +35,7 @@ public class RestaurantController(
     }
     
     [HttpGet("GetByName")]
-    public async Task<ActionResult> GetRestaurantByName(string name, int limit = 10, int offset = 0)
+    public async Task<ActionResult> GetRestaurantByName([Required]string name, int limit = 10, int offset = 0)
     {
         var data = await restaurantService.GetRestaurantsByName(name, limit, offset);
         
@@ -43,7 +43,7 @@ public class RestaurantController(
     }
     
     [HttpGet("GetByCategory")]
-    public async Task<ActionResult> GetRestaurantByName(int categoryId, int limit = 10, int offset = 0)
+    public async Task<ActionResult> GetRestaurantByName([Required]int categoryId, int limit = 10, int offset = 0)
     {
         var data = await restaurantService.GetRestaurantsByCategory(categoryId, limit, offset);
         
