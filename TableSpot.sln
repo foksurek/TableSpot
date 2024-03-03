@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableSpot", "TableSpot.csproj", "{7AE5B2C3-6272-48E5-BADF-29A6AB422ED8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableSpot", "TableSpotServer/TableSpot.csproj", "{7AE5B2C3-6272-48E5-BADF-29A6AB422ED8}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "ClientApp", "ClientApp\ClientApp.esproj", "{46204FEB-87AB-4EF0-86EB-BEBFB01FC4BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +14,9 @@ Global
 		{7AE5B2C3-6272-48E5-BADF-29A6AB422ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AE5B2C3-6272-48E5-BADF-29A6AB422ED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AE5B2C3-6272-48E5-BADF-29A6AB422ED8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46204FEB-87AB-4EF0-86EB-BEBFB01FC4BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46204FEB-87AB-4EF0-86EB-BEBFB01FC4BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46204FEB-87AB-4EF0-86EB-BEBFB01FC4BB}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{46204FEB-87AB-4EF0-86EB-BEBFB01FC4BB}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal

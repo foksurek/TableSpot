@@ -1,7 +1,33 @@
-.idea/
-bin/
-obj/
-Migrations/
-/packages/
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
 riderModule.iml
 /_ReSharper.Caches/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Csharp proj
+TableSpotServer/bin/
+TableSpotServer/obj/
+TableSpotServer/Migrations/
+/packages/
+
+# Logs
+ClientApp/logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ClientApp
+ClientApp/node_modules
+ClientApp/dist
+ClientApp/dist-ssr
+*.local
