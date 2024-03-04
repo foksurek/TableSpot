@@ -15,6 +15,10 @@ public class RestaurantDto
     [Required] public string ImageUrl { get; set; }
     [ForeignKey("Category")] public int CategoryId { get; set; }
     public CategoryDto Category { get; set; } = null!;
+    
+    [ForeignKey("User")] public int UserId { get; set; }
+    public UserDto User { get; set; } = null!;
+    
     public string? Email { get; set; }
     public string? Website { get; set; }
     public string? PhoneNumber { get; set; }

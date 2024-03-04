@@ -12,6 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(o => o.UseMySQL(builder.Configuration.GetConnectionString("MySqlConnection")!));
 builder.Services.AddTransient<IRestaurantService, RestaurantService>();
+builder.Services.AddScoped<IHttpResponseJsonService, HttpResponseJsonService>();
 
 var app = builder.Build();
 
