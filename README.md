@@ -7,6 +7,9 @@ TableSpot is a prototype web application designed to assist restaurants in manag
 > [!CAUTION]
 > TableSpot is a project in development and is not yet fully functional.
 
+> [!NOTE]
+> This project participated in the [100 Commits](https://100commitow.pl/) competition.
+
 ## Technologies
 
 - .NET 8
