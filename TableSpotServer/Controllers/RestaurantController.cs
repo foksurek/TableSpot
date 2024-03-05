@@ -8,6 +8,7 @@ using TableSpot.Interfaces;
 
 namespace TableSpot.Controllers;
 
+[ApiController]
 [Route("api/[controller]")]
 public class RestaurantController(
     IRestaurantService restaurantService,

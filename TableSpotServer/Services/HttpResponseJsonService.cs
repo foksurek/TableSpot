@@ -23,4 +23,10 @@ public class HttpResponseJsonService : IHttpResponseJsonService
     {
         return new { Code = 404, Message = message };
     }
+
+    public object Unauthorized(List<string> details = null!)
+    {
+        details ??= [];
+        return new { Code = 403, Message = "Unauthorized", Details = details };
+    }
 }
