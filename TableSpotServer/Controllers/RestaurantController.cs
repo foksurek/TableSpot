@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using TableSpot.Contexts;
 using TableSpot.Dto;
 using TableSpot.Interfaces;
+using TableSpot.Models;
 
 
 namespace TableSpot.Controllers;
@@ -11,7 +12,7 @@ namespace TableSpot.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 public class RestaurantController(
-    IRestaurantService restaurantService,
+    IRestaurantRepositoryService restaurantRepositoryService,
     IHttpResponseJsonService httpResponseJson
 ) : ControllerBase
 {
@@ -23,14 +24,34 @@ public class RestaurantController(
         if (limit > 100) details.Add("Limit must be less than 100");
         if (details.Count > 0) return BadRequest(httpResponseJson.BadRequest(details));
         
-        return Ok(httpResponseJson.Ok(await restaurantService.GetAllRestaurants(limit, offset)));
+        var data = await restaurantRepositoryService.GetAllRestaurants(limit, offset);
+
+        var responseData = data.Select(r => new RestaurantResponseModel()
+        {
+            Id = r.Id,
+            Name = r.Name,
+            Address = r.Address,
+            Description = r.Description,
+            ImageUrl = r.ImageUrl,
+            Email = r.Email,
+            Website = r.Website,
+            PhoneNumber = r.PhoneNumber,
+            Category = new
+            {
+                Id = r.Category.Id,
+                Name = r.Category.Name
+            }
+        }).ToList();
+        
+        
+        return Ok(httpResponseJson.Ok(responseData));
     }
     
     [HttpGet("GetById")]
     public async Task<ActionResult> GetRestaurantById([Required] int? id)
     {
         if (!id.HasValue) return BadRequest(httpResponseJson.BadRequest(["Restaurant id must be correct"]));
-        var data = await restaurantService.GetRestaurantById((int)id!);
+        var data = await restaurantRepositoryService.GetRestaurantById((int)id!);
         if (data == null) return NotFound(httpResponseJson.NotFound("Restaurant not found"));
         
         return Ok(httpResponseJson.Ok(data));
@@ -44,7 +65,7 @@ public class RestaurantController(
         if (limit < 0 || offset < 0) details.Add("Limit and offset must be greater than 0");
         if (limit > 100) details.Add("Limit must be less than 100");
         if (details.Count > 0) return BadRequest(httpResponseJson.BadRequest(details));
-        var data = await restaurantService.GetRestaurantsByName(name, limit, offset);
+        var data = await restaurantRepositoryService.GetRestaurantsByName(name, limit, offset);
         
         return Ok(httpResponseJson.Ok(data));
     }
@@ -58,9 +79,21 @@ public class RestaurantController(
         if (limit > 100) details.Add("Limit must be less than 100");
         if (details.Count > 0) return BadRequest(httpResponseJson.BadRequest(details));
         
-        var data = await restaurantService.GetRestaurantsByCategory((int)categoryId!, limit, offset);
+        var data = await restaurantRepositoryService.GetRestaurantsByCategory((int)categoryId!, limit, offset);
         
         return Ok(httpResponseJson.Ok(data));
+    }
+    
+    
+    //
+    // Authentication required endpoints
+    //
+    
+    [Authorize]
+    [HttpPost("Create")]
+    public Task<IActionResult> CreateRestaurant([FromBody] RestaurantDto restaurantDto)
+    {
+        throw new NotImplementedException();
     }
     
     

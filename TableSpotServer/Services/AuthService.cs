@@ -1,8 +1,8 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using TableSpot.Contexts;
 using TableSpot.Dto;
+using TableSpot.Models;
 
 namespace TableSpot.Services;
 

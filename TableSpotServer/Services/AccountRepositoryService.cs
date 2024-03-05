@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TableSpot.Contexts;
 using TableSpot.Dto;
 using TableSpot.Interfaces;
+using TableSpot.Models;
 
 namespace TableSpot.Services;
 

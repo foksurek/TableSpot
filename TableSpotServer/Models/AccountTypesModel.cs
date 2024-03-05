@@ -1,4 +1,4 @@
-﻿namespace TableSpot.Contexts;
+﻿namespace TableSpot.Models;
 
 public enum AccountTypesModel
 {

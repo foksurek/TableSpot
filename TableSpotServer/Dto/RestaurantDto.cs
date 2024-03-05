@@ -16,7 +16,7 @@ public class RestaurantDto
     [ForeignKey("Category")] public int CategoryId { get; set; }
     public CategoryDto Category { get; set; } = null!;
     
-    [ForeignKey("Account")] public int AccountId { get; set; }
+    [ForeignKey("Account")] public int OwnerAccountId { get; set; }
     public AccountDto Account { get; set; } = null!;
     
     public string? Email { get; set; }

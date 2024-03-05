@@ -1,15 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TableSpot.Contexts;
 using TableSpot.Dto;
 using TableSpot.Interfaces;
+using TableSpot.Models;
 
 namespace TableSpot.Services;
 
-public class RestaurantService(AppDbContext _dbContext) : IRestaurantService
+public class RestaurantRepositoryService(AppDbContext dbContext) : IRestaurantRepositoryService
 {
     public async Task<List<RestaurantDto>> GetAllRestaurants(int limit, int offset)
     {
-        var responseData = await _dbContext.Restaurants
+
+        return await dbContext.Restaurants
             .Include(r => r.Category)
             .Skip(offset)
             .Take(limit)
@@ -30,17 +31,15 @@ public class RestaurantService(AppDbContext _dbContext) : IRestaurantService
                 }
             })
             .ToListAsync();
-
-        return responseData;
     }
 
 
-    public async Task<RestaurantDto?> GetRestaurantById(int id)
+    public async Task<RestaurantResponseModel?> GetRestaurantById(int id)
     {
-        var data = await _dbContext.Restaurants
+        var data = await dbContext.Restaurants
             .Include(r => r.Category)
             .Where(r => r.Id == id)
-            .Select(r => new RestaurantDto
+            .Select(r => new RestaurantResponseModel()
             {
                 Id = r.Id,
                 Name = r.Name,
@@ -50,24 +49,24 @@ public class RestaurantService(AppDbContext _dbContext) : IRestaurantService
                 Email = r.Email,
                 Website = r.Website,
                 PhoneNumber = r.PhoneNumber,
-                Category = new CategoryDto
+                Category = new
                 {
                     Id = r.Category.Id,
                     Name = r.Category.Name
                 }
             })
-            .FirstOrDefaultAsync();
+            .FirstAsync();
         return data;
     }
     
-    public async Task<List<RestaurantDto>> GetRestaurantsByName(string name, int limit, int offset)
+    public async Task<List<RestaurantResponseModel>> GetRestaurantsByName(string name, int limit, int offset)
     {
-        var responseData = await _dbContext.Restaurants
+        var responseData = await dbContext.Restaurants
             .Include(r => r.Category)
             .Where(r => r.Name.Contains(name))
             .Skip(offset)
             .Take(limit)
-            .Select(r => new RestaurantDto
+            .Select(r => new RestaurantResponseModel()
             {
                 Id = r.Id,
                 Name = r.Name,
@@ -89,14 +88,14 @@ public class RestaurantService(AppDbContext _dbContext) : IRestaurantService
     }
     
     
-    public async Task<List<RestaurantDto>> GetRestaurantsByCategory(int categoryId, int limit, int offset)
+    public async Task<List<RestaurantResponseModel>> GetRestaurantsByCategory(int categoryId, int limit, int offset)
     {
-        var responseData = await _dbContext.Restaurants
+        var responseData = await dbContext.Restaurants
             .Include(r => r.Category)
             .Where(r => r.Category.Id == categoryId)
             .Skip(offset)
             .Take(limit)
-            .Select(r => new RestaurantDto
+            .Select(r => new RestaurantResponseModel()
             {
                 Id = r.Id,
                 Name = r.Name,
@@ -106,7 +105,7 @@ public class RestaurantService(AppDbContext _dbContext) : IRestaurantService
                 Email = r.Email,
                 Website = r.Website,
                 PhoneNumber = r.PhoneNumber,
-                Category = new CategoryDto
+                Category = new
                 {
                     Id = r.Category.Id,
                     Name = r.Category.Name

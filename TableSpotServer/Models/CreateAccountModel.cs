@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TableSpot.Contexts;
+namespace TableSpot.Models;
 
 public class CreateAccountModel
 {

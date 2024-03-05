@@ -2,8 +2,8 @@ using System.Text.Json;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TableSpot.Contexts;
 using TableSpot.Interfaces;
+using TableSpot.Models;
 using TableSpot.Services;
 
 namespace TableSpot;
@@ -38,7 +38,7 @@ class Program
         });
         
         builder.Services.AddDbContext<AppDbContext>(o => o.UseMySQL(builder.Configuration.GetConnectionString("MySqlConnection")!));
-        builder.Services.AddTransient<IRestaurantService, RestaurantService>();
+        builder.Services.AddTransient<IRestaurantRepositoryService, RestaurantRepositoryService>();
         builder.Services.AddScoped<IHttpResponseJsonService, HttpResponseJsonService>();
         builder.Services.AddSingleton<IPasswordService,PasswordService>();
         builder.Services.AddScoped<IAccountRepositoryService, AccountRepositoryService>();
