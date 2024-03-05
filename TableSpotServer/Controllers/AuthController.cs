@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TableSpot.Contexts;
+using TableSpot.Dto;
 using TableSpot.Interfaces;
 using TableSpot.Services;
 
@@ -34,13 +35,19 @@ public class AuthController(
     }
     
     [HttpPost("CreateAccount")]
-    public async Task<ActionResult> CreateAccount([FromBody] LoginModel model)
+    public async Task<ActionResult> CreateAccount([FromBody] CreateAccountModel model)
     {
-        if (!ModelState.IsValid) return BadRequest(httpResponseJsonService.BadRequest(["Email and password must be correctly filled"]));
+        if (!ModelState.IsValid) 
+            return BadRequest(httpResponseJsonService.BadRequest(["Email and password must be correctly filled"]));
         if (await accountRepository.AccountExists(model.Email))
             return BadRequest(httpResponseJsonService.BadRequest(["Email already exists"]));
         var password = passwordService.HashPassword(model.Password);
-        var newUser = await accountRepository.CreateAccount(model.Email, password);
+        var newUser = await accountRepository.CreateAccount(new AccountDto
+        {
+            Email = model.Email,
+            Password = password,
+            AccountTypeId = model.AccountTypeId
+        });
         return Ok(httpResponseJsonService.Ok($"Account with email {newUser!.Email} created"));
     }
     
@@ -59,7 +66,12 @@ public class AuthController(
         var account = new
         {
             Email = User.Identity?.Name,
-            Id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value
+            AccountId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value,
+            AccountType = new
+            {
+                Id = User.FindFirst(ClaimTypes.Role)?.Value,
+                Type = Enum.GetName(typeof(AccountTypesModel), int.Parse(User.FindFirst(ClaimTypes.Role)?.Value!))
+            }
         };
         return Ok(httpResponseJsonService.Ok(account));
     }

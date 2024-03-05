@@ -23,7 +23,8 @@ public class AuthService(AppDbContext dbContext)
         var claims = new List<Claim>
         {
             new(ClaimTypes.Name, user.Email),
-            new(ClaimTypes.NameIdentifier, user.Id.ToString())
+            new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new(ClaimTypes.Role, user.AccountTypeId.ToString()),
         };
         
         var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

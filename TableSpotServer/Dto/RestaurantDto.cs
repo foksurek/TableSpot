@@ -10,7 +10,7 @@ public class RestaurantDto
     [Required] public string Name { get; set; }
     [Required] public string Address { get; set; }
     [Required] public string Description { get; set; }
-    //TODO: Save image and save file path in database instead of saving the image in the database
+    //TODO: Save image and save file path in database instead of saving the image url in the database
     // Eventually, get favicon from resturant website if it exists
     [Required] public string ImageUrl { get; set; }
     [ForeignKey("Category")] public int CategoryId { get; set; }

@@ -17,13 +17,8 @@ public class AccountRepositoryService(AppDbContext dbContext) : IAccountReposito
         return (await dbContext.Accounts.FirstOrDefaultAsync(u => u.Id == id));
     }
     
-    public async Task<AccountDto?> CreateAccount(string email, string password)
+    public async Task<AccountDto?> CreateAccount(AccountDto account)
     {
-        var account = new AccountDto
-        {
-            Email = email,
-            Password = password
-        };
         dbContext.Accounts.Add(account);
         await dbContext.SaveChangesAsync();
         return account;
