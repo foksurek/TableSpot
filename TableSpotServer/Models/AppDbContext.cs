@@ -7,5 +7,5 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 {
     public DbSet<RestaurantDto> Restaurants { get; set; } = null!;
     public DbSet<CategoryDto> Categories { get; set; } = null!;
-    public DbSet<UserDto> Users { get; set; } = null!;
+    public DbSet<AccountDto> Accounts { get; set; } = null!;
 };
