@@ -10,5 +10,10 @@ public interface IRestaurantRepositoryService
     
     public Task<List<RestaurantResponseModel>> GetRestaurantsByName(string name, int limit, int offset);
     public Task<List<RestaurantResponseModel>> GetRestaurantsByCategory(int categoryId, int limit, int offset);
+    public Task CreateRestaurant(RestaurantDto restaurant);
+    public bool RestaurantExists(int id);
+    public bool RestaurantExists(string name);
     
+
+
 }

@@ -69,8 +69,8 @@ public class AuthController(
             AccountId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value,
             AccountType = new
             {
-                Id = User.FindFirst(ClaimTypes.Role)?.Value,
-                Type = Enum.GetName(typeof(AccountTypesModel), int.Parse(User.FindFirst(ClaimTypes.Role)?.Value!))
+                Id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value,
+                Type = User.FindFirst(ClaimTypes.Role)?.Value
             }
         };
         return Ok(httpResponseJsonService.Ok(account));

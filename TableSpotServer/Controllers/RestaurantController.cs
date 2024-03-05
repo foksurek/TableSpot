@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using TableSpot.Dto;
 using TableSpot.Interfaces;
 using TableSpot.Models;
+using TableSpot.Services;
 
 
 namespace TableSpot.Controllers;
@@ -13,14 +15,16 @@ namespace TableSpot.Controllers;
 [Route("api/[controller]")]
 public class RestaurantController(
     IRestaurantRepositoryService restaurantRepositoryService,
-    IHttpResponseJsonService httpResponseJson
+    IHttpResponseJsonService httpResponseJson,
+    AppDbContext dbContext
 ) : ControllerBase
 {
     [HttpGet("GetAll")]
     public async Task<ActionResult> GetAllRestaurants(int limit = 10, int offset = 0)
     {
         List<string> details = [];
-        if (limit < 0 || offset < 0) details.Add("Limit and offset must be greater than 0");
+        if (limit < 0) details.Add("Limit must be greater than 0");
+        if (offset < 0) details.Add("Offset must be greater than 0");
         if (limit > 100) details.Add("Limit must be less than 100");
         if (details.Count > 0) return BadRequest(httpResponseJson.BadRequest(details));
         
@@ -89,11 +93,29 @@ public class RestaurantController(
     // Authentication required endpoints
     //
     
-    [Authorize]
+    [Authorize(Roles = nameof(AccountTypeModel.RestaurantOwner))]
     [HttpPost("Create")]
-    public Task<IActionResult> CreateRestaurant([FromBody] RestaurantDto restaurantDto)
+    public async Task<IActionResult> CreateRestaurant([FromBody] CreateRestaurantModel model)
     {
-        throw new NotImplementedException();
+        var restaurant = new RestaurantDto()
+        {
+            Name = model.Name,
+            Address = model.Address,
+            Description = model.Description,
+            ImageUrl = model.ImageUrl,
+            CategoryId = model.CategoryId,
+            OwnerAccountId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!),
+            Email = model.Email,
+            Website = model.Website,
+            PhoneNumber = model.PhoneNumber
+        };
+        
+        if (restaurantRepositoryService.RestaurantExists(model.Name))
+            return BadRequest(httpResponseJson.BadRequest(["Restaurant with this name already exists"]));
+        if (!dbContext.Categories.Any(c => c.Id == model.CategoryId))
+            return BadRequest(httpResponseJson.BadRequest(["Category with this id does not exist"]));
+        await restaurantRepositoryService.CreateRestaurant(restaurant);
+        return Ok(httpResponseJson.Ok("Restaurant created"));
     }
     
     

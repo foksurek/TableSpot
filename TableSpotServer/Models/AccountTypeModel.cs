@@ -1,6 +1,6 @@
 ﻿namespace TableSpot.Models;
 
-public enum AccountTypesModel
+public enum AccountTypeModel
 {
     Admin = 4,
     RestaurantOwner = 3,

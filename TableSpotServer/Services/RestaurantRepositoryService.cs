@@ -115,4 +115,21 @@ public class RestaurantRepositoryService(AppDbContext dbContext) : IRestaurantRe
 
         return responseData;
     }
+    
+    
+    public Task CreateRestaurant(RestaurantDto restaurant)
+    {
+        dbContext.Restaurants.Add(restaurant);
+        return dbContext.SaveChangesAsync();
+    }
+    
+    public bool RestaurantExists(int id)
+    {
+        return dbContext.Restaurants.Any(r => r.Id == id);
+    }
+    
+    public bool RestaurantExists(string name)
+    {
+        return dbContext.Restaurants.Any(r => r.Name == name);
+    }
 }

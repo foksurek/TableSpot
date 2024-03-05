@@ -24,7 +24,7 @@ public class AuthService(AppDbContext dbContext)
         {
             new(ClaimTypes.Name, user.Email),
             new(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new(ClaimTypes.Role, user.AccountTypeId.ToString()),
+            new(ClaimTypes.Role, Enum.GetName(typeof(AccountTypeModel), user.AccountTypeId)!)
         };
         
         var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
