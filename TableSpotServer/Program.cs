@@ -36,6 +36,21 @@ class Program
                 return new BadRequestObjectResult(result);
             };
         });
+        builder.Services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(builder =>
+            {
+                builder.WithOrigins("http://localhost:5173")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials();
+            });
+            options.AddPolicy("AllowAllMethods",
+                builder => builder.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        });
+        
         
         builder.Services.AddDbContext<AppDbContext>(o => o.UseMySQL(builder.Configuration.GetConnectionString("MySqlConnection")!));
         builder.Services.AddTransient<IRestaurantRepositoryService, RestaurantRepositoryService>();
@@ -51,10 +66,17 @@ class Program
             options.Cookie.Name = "TableSpotAuthCookie";
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
             options.Cookie.SameSite = SameSiteMode.Strict;
-            options.Events.OnRedirectToLogin = context =>
+            options.Events.OnRedirectToLogin = async context =>
             {
                 context.Response.StatusCode = 401;
-                return Task.CompletedTask;
+                context.Response.ContentType = "application/json";
+                await context.Response.WriteAsync(
+                    JsonSerializer.Serialize(new 
+                    { 
+                        code = 401,
+                        message = "Unauthorized",
+                        details = new List<string> { "User is unauthorized" } 
+                    }));
             };
         });
         
@@ -86,6 +108,7 @@ class Program
         app.UseHttpsRedirection();
         app.UseAuthentication();
         app.UseAuthorization();
+        app.UseCors();
         app.MapDefaultControllerRoute();
         
         app.Run();

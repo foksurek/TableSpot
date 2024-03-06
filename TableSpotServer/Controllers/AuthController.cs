@@ -31,7 +31,11 @@ public class AuthController(
         
         await authService.SignInAsync(HttpContext, user);
         
-        return Ok(httpResponseJsonService.Ok("Login successful"));
+        return Ok(httpResponseJsonService.Ok(new
+        {
+            Id = user.Id,
+            Email = user.Email
+        }));
     }
     
     [HttpPost("CreateAccount")]
