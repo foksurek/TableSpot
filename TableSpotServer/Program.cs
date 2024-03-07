@@ -66,6 +66,18 @@ class Program
             options.Cookie.Name = "TableSpotAuthCookie";
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
             options.Cookie.SameSite = SameSiteMode.Strict;
+            options.Events.OnRedirectToAccessDenied = async context =>
+            {
+                context.Response.StatusCode = 401;
+                context.Response.ContentType = "application/json";
+                await context.Response.WriteAsync(
+                    JsonSerializer.Serialize(new 
+                    { 
+                        code = 401,
+                        message = "Unauthorized",
+                        details = new List<string> { "User is unauthorized" } 
+                    }));
+            };
             options.Events.OnRedirectToLogin = async context =>
             {
                 context.Response.StatusCode = 401;
