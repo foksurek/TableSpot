@@ -1,5 +1,6 @@
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![wakatime](https://wakatime.com/badge/github/foksurek/TableSpot.svg)](https://wakatime.com/badge/github/foksurek/TableSpot)
+[![100 - COMMITOW](https://img.shields.io/badge/100-COMMITOW-2ea44f)](https://100commitow.pl/)
 
 # TableSpot
 
