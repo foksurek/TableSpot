@@ -132,4 +132,18 @@ public class RestaurantRepositoryService(AppDbContext dbContext) : IRestaurantRe
     {
         return dbContext.Restaurants.Any(r => r.Name == name);
     }
+
+    public Task DeleteRestaurant(int id)
+    {
+        var restaurant = dbContext.Restaurants.First(r => r.Id == id);
+        dbContext.Restaurants.Remove(restaurant);
+        return dbContext.SaveChangesAsync();
+    }
+
+    public Task ChangeRestaurantName(int id, string name)
+    {
+        var restaurant = dbContext.Restaurants.First(r => r.Id == id);
+        restaurant.Name = name;
+        return dbContext.SaveChangesAsync();
+    }
 }

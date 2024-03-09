@@ -14,6 +14,10 @@ public interface IRestaurantRepositoryService
     public bool RestaurantExists(int id);
     public bool RestaurantExists(string name);
     
+    public Task DeleteRestaurant(int id);
+    public Task ChangeRestaurantName(int id, string name);
+
+
 
 
 }
