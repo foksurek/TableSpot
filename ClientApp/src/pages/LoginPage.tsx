@@ -27,14 +27,14 @@ const LoginPage = () => {
             let resp = await axios.post<ApiResponse>('http://localhost:5115/api/Auth/Login', {
                 email,
                 password
-            });
-            if (resp.data.code === 200) {
-                setUser({
+            }, {withCredentials: true});
+            if (resp.status === 200) {
+                setUser({ 
                     id: parseInt(resp.data.data.accountId),
                     email: resp.data.data.email
                 });
             }
-            if (resp.data.code === 401) {
+            if (resp.status === 401) {
                 alert('Niepoprawne dane logowania');
             }
         }

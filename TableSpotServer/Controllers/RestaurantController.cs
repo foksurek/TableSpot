@@ -93,7 +93,8 @@ public class RestaurantController(
     // Authentication required endpoints
     //
     
-    [Authorize(Roles = nameof(AccountTypeModel.RestaurantOwner))]
+    [Authorize(Roles = nameof(AccountTypeModel.RestaurantOwner) + "," +
+                       nameof(AccountTypeModel.Admin))]
     [HttpPost("Create")]
     public async Task<IActionResult> CreateRestaurant([FromBody] CreateRestaurantModel model)
     {
