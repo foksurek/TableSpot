@@ -119,36 +119,115 @@ public class RestaurantController(
         return Ok(httpResponseJson.Ok("Restaurant created"));
     }
     
+    // [Authorize(Roles = nameof(AccountTypeModel.RestaurantOwner))]
+    // [HttpPost("ChangeName")]
+    // public async Task<IActionResult> ChangeRestaurantName([Required] int? id, [Required] string name)
+    // {
+    //     if (!id.HasValue) return BadRequest(httpResponseJson.BadRequest(["Restaurant id must be correct"]));
+    //     if (string.IsNullOrEmpty(name)) return BadRequest(httpResponseJson.BadRequest(["Restaurant name must be correct"]));
+    //     if (!restaurantRepositoryService.RestaurantExists((int)id!))
+    //         return NotFound(httpResponseJson.NotFound("Restaurant not found"));
+    //     if (restaurantRepositoryService.RestaurantExists(name))
+    //         return BadRequest(httpResponseJson.BadRequest(["Restaurant with this name already exists"]));
+    //     if (restaurantRepositoryService.CheckIfOwner((int)id!, int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!)!))
+    //         return BadRequest(httpResponseJson.BadRequest(["You are not the owner of this restaurant"]));
+    //     await restaurantRepositoryService.ChangeRestaurantName((int)id!, name);
+    //     return Ok(httpResponseJson.Ok("Restaurant name changed"));
+    // }
+    //
+    // // change desc
+    // [Authorize(Roles = nameof(AccountTypeModel.RestaurantOwner))]
+    // [HttpPost("ChangeDescription")]
+    // public async Task<IActionResult> ChangeRestaurantDescription([Required] int? id, [Required] string description)
+    // {
+    //     if (!id.HasValue) return BadRequest(httpResponseJson.BadRequest(["Restaurant id must be correct"]));
+    //     if (string.IsNullOrEmpty(description)) return BadRequest(httpResponseJson.BadRequest(["Restaurant description must be correct"]));
+    //     if (!restaurantRepositoryService.RestaurantExists((int)id!))
+    //         return NotFound(httpResponseJson.NotFound("Restaurant not found"));
+    //     if (restaurantRepositoryService.CheckIfOwner((int)id!, int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!)!))
+    //         return BadRequest(httpResponseJson.BadRequest(["You are not the owner of this restaurant"]));
+    //     await restaurantRepositoryService.ChangeRestaurantDescription((int)id!, description);
+    //     return Ok(httpResponseJson.Ok("Restaurant description changed"));
+    // }
+    //
+    // [Authorize(Roles = nameof(AccountTypeModel.RestaurantOwner))]
+    // [HttpPost("ChangeAddress")]
+    // public async Task<IActionResult> ChangeRestaurantAddress([Required] int? id, [Required] string address)
+    // {
+    //     if (!id.HasValue) return BadRequest(httpResponseJson.BadRequest(["Restaurant id must be correct"]));
+    //     if (string.IsNullOrEmpty(address)) return BadRequest(httpResponseJson.BadRequest(["Restaurant address must be correct"]));
+    //     if (!restaurantRepositoryService.RestaurantExists((int)id!))
+    //         return NotFound(httpResponseJson.NotFound("Restaurant not found"));
+    //     if (restaurantRepositoryService.CheckIfOwner((int)id!, int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!)!))
+    //         return BadRequest(httpResponseJson.BadRequest(["You are not the owner of this restaurant"]));
+    //     await restaurantRepositoryService.ChangeRestaurantAddress((int)id!, address);
+    //     return Ok(httpResponseJson.Ok("Restaurant address changed"));
+    // }
+
     [Authorize(Roles = nameof(AccountTypeModel.RestaurantOwner))]
-    [HttpPost("ChangeName")]
-    public async Task<IActionResult> ChangeRestaurantName([Required] int? id, [Required] string name)
+    [HttpPost("Modify")]
+    public async Task<IActionResult> ModifyRestaurant(
+                   int? id, 
+        [FromBody] string newValue, 
+        [FromBody] string valueToChange)
     {
         if (!id.HasValue) return BadRequest(httpResponseJson.BadRequest(["Restaurant id must be correct"]));
-        if (string.IsNullOrEmpty(name)) return BadRequest(httpResponseJson.BadRequest(["Restaurant name must be correct"]));
+        if (string.IsNullOrEmpty(newValue)) return BadRequest(httpResponseJson.BadRequest(["Restaurant " + valueToChange + " must be correct"]));
         if (!restaurantRepositoryService.RestaurantExists((int)id!))
             return NotFound(httpResponseJson.NotFound("Restaurant not found"));
-        if (restaurantRepositoryService.RestaurantExists(name))
-            return BadRequest(httpResponseJson.BadRequest(["Restaurant with this name already exists"]));
-        if (dbContext.Restaurants.Where(r => r.Name == name).Select(r => 
-                r.OwnerAccountId).FirstOrDefault().ToString() == User.FindFirst(ClaimTypes.NameIdentifier)?.Value)
-            return BadRequest(httpResponseJson.BadRequest(["You are not the owner of this restaurant"]));
-        await restaurantRepositoryService.ChangeRestaurantName((int)id!, name);
-        return Ok(httpResponseJson.Ok("Restaurant name changed"));
+        if (!restaurantRepositoryService.CheckIfOwner((int)id!, int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!)!))
+            return Unauthorized(httpResponseJson.Unauthorized(["You are not the owner of this restaurant"]));
+        switch (valueToChange)
+        {
+            case "name":
+                if (restaurantRepositoryService.RestaurantExists(newValue))
+                    return BadRequest(httpResponseJson.BadRequest(["Restaurant with this name already exists"]));
+                await restaurantRepositoryService.ChangeRestaurantName((int)id!, newValue);
+                break;
+            case "description":
+                await restaurantRepositoryService.ChangeRestaurantDescription((int)id!, newValue);
+                break;
+            case "address":
+                await restaurantRepositoryService.ChangeRestaurantAddress((int)id!, newValue);
+                break;
+            case "imageUrl":
+                await restaurantRepositoryService.ChangeRestaurantImageUrl((int)id!, newValue);
+                break;
+            case "email":
+                await restaurantRepositoryService.ChangeRestaurantEmail((int)id!, newValue);
+                break;
+            case "website":
+                await restaurantRepositoryService.ChangeRestaurantWebsite((int)id!, newValue);
+                break;
+            case "phoneNumber":
+                await restaurantRepositoryService.ChangeRestaurantPhoneNumber((int)id!, newValue);
+                break;
+            case "category":
+                if (!dbContext.Categories.Any(c => c.Id == int.Parse(newValue)))
+                    return BadRequest(httpResponseJson.BadRequest(["Category with this id does not exist"]));
+                await restaurantRepositoryService.ChangeRestaurantCategory((int)id!, int.Parse(newValue));
+                break;
+            default:
+                return BadRequest(httpResponseJson.BadRequest(["Invalid value to change"]));
+        }
+        return Ok(httpResponseJson.Ok("Restaurant " + valueToChange + " changed"));
     }
+    
+    
     
     [Authorize(Roles = nameof(AccountTypeModel.RestaurantOwner))]
     [HttpDelete("Delete")]
     public async Task<IActionResult> DeleteRestaurant([Required] int? id)
     {
+        Console.WriteLine(restaurantRepositoryService.CheckIfOwner((int)id!, int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!)!));
+
         if (!id.HasValue) return BadRequest(httpResponseJson.BadRequest(["Restaurant id must be correct"]));
         if (!restaurantRepositoryService.RestaurantExists((int)id!))
             return NotFound(httpResponseJson.NotFound("Restaurant not found"));
-        if (dbContext.Restaurants.Where(r => r.Id == id).Select(r => 
-                r.OwnerAccountId).FirstOrDefault().ToString() == User.FindFirst(ClaimTypes.NameIdentifier)?.Value)
-            return BadRequest(httpResponseJson.BadRequest(["You are not the owner of this restaurant"]));
+        if (!restaurantRepositoryService.CheckIfOwner((int)id!, int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!)!))
+            return Unauthorized(httpResponseJson.Unauthorized(["You are not the owner of this restaurant"]));
         await restaurantRepositoryService.DeleteRestaurant((int)id!);
         return Ok(httpResponseJson.Ok("Restaurant deleted"));
     }
-    
     
 }

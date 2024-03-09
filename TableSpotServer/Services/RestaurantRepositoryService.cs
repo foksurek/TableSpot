@@ -133,6 +133,11 @@ public class RestaurantRepositoryService(AppDbContext dbContext) : IRestaurantRe
         return dbContext.Restaurants.Any(r => r.Name == name);
     }
 
+    public bool CheckIfOwner(int restaurantId, int accountId)
+    {
+        return dbContext.Restaurants.Where(r => r.Id == restaurantId).Select(r => r.OwnerAccountId).First() == accountId;
+    }
+
     public Task DeleteRestaurant(int id)
     {
         var restaurant = dbContext.Restaurants.First(r => r.Id == id);
@@ -145,5 +150,50 @@ public class RestaurantRepositoryService(AppDbContext dbContext) : IRestaurantRe
         var restaurant = dbContext.Restaurants.First(r => r.Id == id);
         restaurant.Name = name;
         return dbContext.SaveChangesAsync();
+    }
+
+    public Task ChangeRestaurantAddress(int id, string address)
+    {
+        var restaurant = dbContext.Restaurants.First(r => r.Id == id);
+        restaurant.Address = address;
+        return dbContext.SaveChangesAsync();
+    }
+
+    public Task ChangeRestaurantDescription(int id, string description)
+    {
+        var restaurant = dbContext.Restaurants.First(r => r.Id == id);
+        restaurant.Description = description;
+        return dbContext.SaveChangesAsync();
+    }
+
+    public Task ChangeRestaurantImageUrl(int id, string imageUrl)
+    {
+        var restaurant = dbContext.Restaurants.First(r => r.Id == id);
+        restaurant.ImageUrl = imageUrl;
+        return dbContext.SaveChangesAsync();
+    }
+
+    public Task ChangeRestaurantEmail(int id, string email)
+    {
+        var restaurant = dbContext.Restaurants.First(r => r.Id == id);
+        restaurant.Email = email;
+        return dbContext.SaveChangesAsync();
+    }
+
+    public Task ChangeRestaurantWebsite(int id, string website)
+    {
+        var restaurant = dbContext.Restaurants.First(r => r.Id == id);
+        restaurant.Website = website;
+        return dbContext.SaveChangesAsync();
+    }
+
+    public Task ChangeRestaurantPhoneNumber(int id, string phoneNumber)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task ChangeRestaurantCategory(int id, int categoryId)
+    {
+        throw new NotImplementedException();
     }
 }
