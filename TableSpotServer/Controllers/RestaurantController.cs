@@ -166,11 +166,11 @@ public class RestaurantController(
 
     [Authorize(Roles = nameof(AccountTypeModel.RestaurantOwner))]
     [HttpPost("Modify")]
-    public async Task<IActionResult> ModifyRestaurant(
-                   int? id, 
-        [FromBody] string newValue, 
-        [FromBody] string valueToChange)
+    public async Task<IActionResult> ModifyRestaurant(int? id, [FromBody] ModifyRestaurantModel model)
     {
+        var newValue = model.NewValue;
+        var valueToChange = model.Field;
+        
         if (!id.HasValue) return BadRequest(httpResponseJson.BadRequest(["Restaurant id must be correct"]));
         if (string.IsNullOrEmpty(newValue)) return BadRequest(httpResponseJson.BadRequest(["Restaurant " + valueToChange + " must be correct"]));
         if (!restaurantRepositoryService.RestaurantExists((int)id!))

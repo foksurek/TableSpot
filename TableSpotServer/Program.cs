@@ -55,6 +55,7 @@ class Program
         builder.Services.AddDbContext<AppDbContext>(o => o.UseMySQL(builder.Configuration.GetConnectionString("MySqlConnection")!));
         builder.Services.AddTransient<IRestaurantRepositoryService, RestaurantRepositoryService>();
         builder.Services.AddScoped<IHttpResponseJsonService, HttpResponseJsonService>();
+        builder.Services.AddScoped<IMenuRepositoryService, MenuRepositoryService>();
         builder.Services.AddSingleton<IPasswordService,PasswordService>();
         builder.Services.AddScoped<IAccountRepositoryService, AccountRepositoryService>();
         builder.Services.AddScoped<AuthService>();

@@ -22,4 +22,6 @@ public class RestaurantDto
     public string? Email { get; set; }
     public string? Website { get; set; }
     public string? PhoneNumber { get; set; }
+    
+    public ICollection<MenuDto> Menu { get; set; } = null!;
 }
