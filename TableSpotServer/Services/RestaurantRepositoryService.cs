@@ -116,6 +116,32 @@ public class RestaurantRepositoryService(AppDbContext dbContext) : IRestaurantRe
         return responseData;
     }
     
+    public Task<List<RestaurantDto>> GetRestaurantsByOwner(int accountId, int limit, int offset)
+    {
+        return dbContext.Restaurants
+            .Where(r => r.OwnerAccountId == accountId)
+            .Include(r => r.Category)
+            .Skip(offset)
+            .Take(limit)
+            .Select(r => new RestaurantDto
+            {
+                Id = r.Id,
+                Name = r.Name,
+                Address = r.Address,
+                Description = r.Description,
+                ImageUrl = r.ImageUrl,
+                Email = r.Email,
+                Website = r.Website,
+                PhoneNumber = r.PhoneNumber,
+                Category = new CategoryDto
+                {
+                    Id = r.Category.Id,
+                    Name = r.Category.Name
+                }
+            })
+            .ToListAsync();
+    }
+    
     
     public Task CreateRestaurant(RestaurantDto restaurant)
     {

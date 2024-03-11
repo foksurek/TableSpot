@@ -177,7 +177,7 @@ public class RestaurantController(
             return NotFound(httpResponseJson.NotFound("Restaurant not found"));
         if (!restaurantRepositoryService.CheckIfOwner((int)id!, int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!)!))
             return Unauthorized(httpResponseJson.Unauthorized(["You are not the owner of this restaurant"]));
-        switch (valueToChange)
+        switch (valueToChange.ToLower())
         {
             case "name":
                 if (restaurantRepositoryService.RestaurantExists(newValue))
