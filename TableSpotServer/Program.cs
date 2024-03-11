@@ -56,6 +56,7 @@ class Program
         builder.Services.AddTransient<IRestaurantRepositoryService, RestaurantRepositoryService>();
         builder.Services.AddScoped<IHttpResponseJsonService, HttpResponseJsonService>();
         builder.Services.AddScoped<IMenuRepositoryService, MenuRepositoryService>();
+        builder.Services.AddScoped<IEmployeeRepositoryService, EmployeeRepositoryService>();
         builder.Services.AddSingleton<IPasswordService,PasswordService>();
         builder.Services.AddScoped<IAccountRepositoryService, AccountRepositoryService>();
         builder.Services.AddScoped<AuthService>();

@@ -6,6 +6,8 @@ using TableSpot.Models;
 
 namespace TableSpot.Controllers;
 
+[ApiController]
+[Route("Api/[controller]")]
 public class AccountController(
     IHttpResponseJsonService httpResponseJsonService,
     IRestaurantRepositoryService restaurantRepositoryService
@@ -21,6 +23,7 @@ public class AccountController(
         {
             id = (int)accountTypeModel;
         }
+        // TODO: Add name and surname to the response
         var account = new
         {
             Email = User.Identity?.Name,

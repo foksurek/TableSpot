@@ -11,7 +11,7 @@ using TableSpot.Services;
 namespace TableSpot.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("Api/[controller]")]
 public class AuthController(
     IHttpResponseJsonService httpResponseJsonService, 
     IPasswordService passwordService,
@@ -49,6 +49,8 @@ public class AuthController(
         var newUser = await accountRepository.CreateAccount(new AccountDto
         {
             Email = model.Email,
+            Name = model.Name,
+            Surname = model.Surname,
             Password = password,
             AccountTypeId = model.AccountTypeId
         });

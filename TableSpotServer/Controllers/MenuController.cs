@@ -7,6 +7,8 @@ using TableSpot.Models;
 
 namespace TableSpot.Controllers;
 
+[ApiController]
+[Route("Api/[controller]")]
 public class MenuController(
     IMenuRepositoryService menuRepositoryService,
     IRestaurantRepositoryService restaurantRepositoryService,
@@ -31,5 +33,4 @@ public class MenuController(
         await menuRepositoryService.AddToMenu((int)restaurantId, menu);
         return Ok(httpResponseJsonService.Ok("Menu item added successfully"));
     }
-    
 }

@@ -29,5 +29,15 @@ public class AccountRepositoryService(AppDbContext dbContext) : IAccountReposito
         return (await dbContext.Accounts.AnyAsync(u => u.Email.ToLower() == email.ToLower()));
     }
     
+    public async Task<bool> AccountExistsById(int id)
+    {
+        return (await dbContext.Accounts.AnyAsync(u => u.Id == id));
+    }
+    
+    public async Task<bool> EmployeeExist(int id)
+    {
+        return (await dbContext.Accounts.AnyAsync(u => u.Id == id && u.AccountTypeId == 2));
+    }
+    
     
 }

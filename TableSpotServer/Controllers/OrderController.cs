@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 namespace TableSpot.Controllers;
-
 [ApiController]
 [Route("Api/[controller]")]
-public class TableController : ControllerBase
+public class OrderController : ControllerBase
 {
-    //TODO: Implement TableController
+    //TODO: Implement OrderController
 }

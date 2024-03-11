@@ -12,7 +12,7 @@ using TableSpot.Services;
 namespace TableSpot.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("Api/[controller]")]
 public class RestaurantController(
     IRestaurantRepositoryService restaurantRepositoryService,
     IHttpResponseJsonService httpResponseJson,
