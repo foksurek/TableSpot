@@ -9,7 +9,7 @@ TableSpot is a prototype web application designed to assist restaurants in manag
 > TableSpot is a project in development and is not yet fully functional.
 
 > [!NOTE]
-> This project participated in the [100 Commits](https://100commitow.pl/) competition.
+> This project participated in the [100 Commitów](https://100commitow.pl/) competition.
 
 ## Technologies
 
