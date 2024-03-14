@@ -1,3 +1,48 @@
 body {
   background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+}
+
+nav {
+  width: 90%;
+  padding: 20px 5%;
+  background: #ffffff;
+  -webkit-box-shadow: 0 8px 24px -18px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 0 8px 24px -18px rgba(66, 68, 90, 1);
+  box-shadow: 0 8px 24px -18px rgba(66, 68, 90, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  > * {
+    margin: auto 0;
+  }
+  h1 {
+    margin: 0;
+    padding: 0;
+  }
+  > ul {
+    font-weight: 500;
+    width: 30%;
+    display: flex;
+    text-decoration: none;
+    list-style: none;
+    padding: 0;
+    justify-content: space-between;
+  }
+  > span {
+    button {
+      position: relative;
+      padding: 10px;
+      > svg {
+        position: relative;
+        left: 5px;
+      }
+    }
+  }
 }
