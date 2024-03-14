@@ -10,12 +10,13 @@ namespace TableSpot.Controllers;
 [Route("Api/[controller]")]
 public class AccountController(
     IHttpResponseJsonService httpResponseJsonService,
-    IRestaurantRepositoryService restaurantRepositoryService
+    IRestaurantRepositoryService restaurantRepositoryService,
+    IAccountRepositoryService accountRepositoryService
     ) : ControllerBase
 {
     [Authorize]
     [HttpGet("GetAccountData")]
-    public ActionResult GetAccountData()
+    public async Task<ActionResult> GetAccountData()
     {
         var id = 0;
         var value = User.FindFirst(ClaimTypes.Role)?.Value;
@@ -23,9 +24,11 @@ public class AccountController(
         {
             id = (int)accountTypeModel;
         }
-        // TODO: Add name and surname to the response
+        var data = await accountRepositoryService.GetAccount(User.Identity?.Name!);
         var account = new
         {
+            Name = data!.Name,
+            Surname = data!.Surname,
             Email = User.Identity?.Name,
             AccountId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value,
             AccountType = new

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TableSpot.Attributes;
 using TableSpot.Dto;
 using TableSpot.Interfaces;
 using TableSpot.Models;
@@ -8,7 +9,7 @@ namespace TableSpot.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize(Roles = nameof(AccountTypeModel.RestaurantOwner))]
+[RAuthorization(AccountTypeModel.RestaurantOwner)]
 public class EmployeeController(
     IEmployeeRepositoryService employeeRepositoryService,
     IHttpResponseJsonService httpResponseJsonService,
