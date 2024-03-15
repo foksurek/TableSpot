@@ -43,7 +43,7 @@ To contribute to TableSpot, follow these steps:
 3. Create a new branch for your changes: `git checkout -b feature/your-feature-name`.
 4. Make your changes and ensure they adhere to the project's coding standards.
 5. Test your changes thoroughly.
-6. Commit your changes with descriptive commit messages: `git commit -m "Add your descriptive message here"`.
+6. Commit your changes with descriptive commit messages: `[server/feature] git commit -m "Add your descriptive message here"`.
 7. Push your changes to your forked repository: `git push origin feature/your-feature-name`.
 8. Open a pull request on the original repository, explaining the changes you've made.
 
