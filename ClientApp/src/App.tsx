@@ -2,7 +2,7 @@ import React from "react";
 import {BrowserRouter} from "react-router-dom";
 import Routes from "./Routes.tsx";
 import {AuthProvider} from "./contexts/AuthContext.tsx";
-import Navigation from "./components/Navigation.tsx";
+import Navigation from "./components/pageElements/Navigation.tsx";
 
 const App : React.FC = () => {
   return (

@@ -3,10 +3,36 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Quicksand", sans-serif;
+  font-family: "Quicksand", sans-serif !important;
 }
 
-nav {
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.searchBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: #efefef;
+  border-radius: 5px;
+  padding: 0 10px;
+  > input[type="text"] {
+    background: #efefef;
+    width: 90%;
+    padding: 10px;
+    border-radius: 5px;
+    margin: auto;
+    outline: none;
+    border: none;
+  }
+}
+.nav-mobile {
+  
+}
+.nav-full {
   width: 90%;
   padding: 20px 5%;
   background: #ffffff;
@@ -23,26 +49,59 @@ nav {
     margin: auto 0;
   }
   h1 {
+    width: fit-content;
     margin: 0;
     padding: 0;
+    &:after {
+      position: relative;
+      display: block;
+      content: '';
+      background: #007bff;
+      height: 3px;
+      width: 0%;
+      left: 50%;
+      transition: 0.5s;
+    }
+    &:hover {
+      color: #007bff;
+      cursor: pointer;
+      &:after {
+        width: 120%;
+        left: -10%;
+      }
+    }
+  }
+  .searchBar {
+    width: 20% !important;
   }
   > ul {
-    font-weight: 500;
+    margin-left: 10%;
     width: 30%;
     display: flex;
     text-decoration: none;
     list-style: none;
     padding: 0;
     justify-content: space-between;
-  }
-  > span {
-    button {
-      position: relative;
-      padding: 10px;
-      > svg {
-        position: relative;
-        left: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    > li {
+      transition: 0.2s;
+      margin: auto 0;
+      padding: 0;
+      &:hover {
+        color: #007bff;
       }
     }
   }
+
+  > span {
+    width: 20%;
+    display: block;
+    > button {
+      float: right;
+      font-weight: bold !important;
+      margin: 0 10px !important;
+    }
+  }
 }
+
