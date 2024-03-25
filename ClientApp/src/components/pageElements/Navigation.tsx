@@ -1,32 +1,40 @@
-﻿import {Button} from "@mui/material";
-import {Link} from "react-router-dom";
+﻿import {useEffect, useState} from "react";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar.tsx";
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Navigation = () => {
-    
-    if (document.body.scrollWidth < 1700)
-        return (
-            <nav className="nav-mobile">
-                <h1>TableSpot</h1>
-                <Button variant="outlined">Log In</Button>
-            </nav>
-        )
-        
+    const [isNavOpen, setIsNavOpen] = useState(true);
+
+    const toggleNav = () => {
+        setIsNavOpen(!isNavOpen);
+    };
+
+
+
     return (
-        <nav className="nav-full">
-            <h1>TableSpot</h1>
-            <ul>
-                <li><Link to="">Home</Link></li>
-                <li>Browse</li>
-                <li>Third option</li>
-            </ul>
-            <SearchBar/>
-            <span>
+        <nav className={`nav-full ${isNavOpen && (document.body.clientWidth < 1700) ? 'open' : ''}`}>
+            <div className="menu-top">
+                <Link to="/"><h1>TableSpot</h1></Link>
+                <MenuIcon onClick={toggleNav} />
+            </div>
+            <>
+                <>
+                    <ul>
+                        <li><Link to="">Home</Link></li>
+                        <li><Link to="">Browse</Link></li>
+                        <li><Link to="">Third option</Link></li>
+                    </ul>
+                    <SearchBar/>
+                    <span>
                 <Button variant="outlined">Log In</Button>
                 <Button variant="contained">Add your business</Button>
-            </span>
+                </span>
+                </>
+            </>
         </nav>
-    )
-}
+    );
+};
 
-export default Navigation
+export default Navigation;

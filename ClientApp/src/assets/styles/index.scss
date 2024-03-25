@@ -30,7 +30,7 @@ a {
   }
 }
 .nav-mobile {
-  
+
 }
 .nav-full {
   width: 90%;
@@ -47,6 +47,18 @@ a {
   align-content: center;
   > * {
     margin: auto 0;
+  }
+  .menu-top {
+    display: flex;
+    justify-content: space-between;
+    svg {
+      display: none;
+      transition: .2s;
+      &:hover {
+        cursor: pointer;
+        color: #007bff;
+      }
+    }
   }
   h1 {
     width: fit-content;
@@ -75,7 +87,6 @@ a {
     width: 20% !important;
   }
   > ul {
-    margin-left: 10%;
     width: 30%;
     display: flex;
     text-decoration: none;
@@ -88,8 +99,12 @@ a {
       transition: 0.2s;
       margin: auto 0;
       padding: 0;
-      &:hover {
-        color: #007bff;
+      > a {
+        transition: 0.2s;
+        color: black;
+        &:hover {
+          color: #007bff;
+        }
       }
     }
   }
