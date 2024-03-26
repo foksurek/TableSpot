@@ -37,7 +37,7 @@ export const AuthProvider = (props: Props) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            let resp = await axios.get<ApiResponse>('http://localhost:5115/api/Auth/GetAccountData', {withCredentials: true});
+            let resp = await axios.get<ApiResponse>('http://localhost:5115/Api/Account/GetAccountData', {withCredentials: true});
             let data = resp.data;
             setUser({
                 id: parseInt(data.data.accountId),

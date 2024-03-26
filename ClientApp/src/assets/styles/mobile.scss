@@ -1,5 +1,4 @@
-﻿.nav-full {
-  transition: .4s;
+﻿.nav {
   @media only screen and (max-width: 1700px) {
     height: 40px;
     flex-direction: column;
@@ -25,18 +24,19 @@
 
 .open {
  @media only screen and (max-width: 1700px){
-   transition: .5s;
-   height: 300px !important;
+ height: 340px;
    > ul {
      display: flex;
-     margin: 0;
+
      li {
        margin: 10px 0;
+       font-size: 1.2rem;
      }
      flex-direction: column;
      justify-content: center;
      width: fit-content;
      text-align: center;
+     margin: 0 0 10px;
    }
    .searchBar {
      display: flex;
@@ -47,7 +47,7 @@
      width: 80% !important;
      justify-content: center;
      flex-direction: column;
-     margin-top: 20px;
+     margin-top: 10px;
      button {
        margin: 5px 0 !important;
      }

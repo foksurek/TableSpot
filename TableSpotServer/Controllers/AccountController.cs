@@ -52,8 +52,8 @@ public class AccountController(
         if (details.Count > 0) return BadRequest(httpResponseJsonService.BadRequest(details));
         var data = await restaurantRepositoryService.GetRestaurantsByOwner(
             int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!),
-            (int)limit!,
-            (int)offset!
+            limit!,
+            offset!
         );
 
         // return Ok(data);

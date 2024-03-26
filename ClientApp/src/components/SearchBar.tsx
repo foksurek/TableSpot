@@ -1,11 +1,16 @@
 ﻿import SearchIcon from '@mui/icons-material/Search';
 
-const SearchBar = () => {
+type Props = {
+    onClick?: () => void;
+    onChange?: () => void;
+}
+
+const SearchBar = (props: Props) => {
     return (
         <>
-            <div className="searchBar">
+            <div className="searchBar" onClick={props.onClick}>
                 <SearchIcon/>
-                <input type="text" placeholder="Search for a business"/>
+                <input type="text" onChange={props.onChange} placeholder="Search for a business"/>
             </div>
         </>
     )
