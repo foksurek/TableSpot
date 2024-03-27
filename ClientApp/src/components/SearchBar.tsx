@@ -1,17 +1,20 @@
 ﻿import SearchIcon from '@mui/icons-material/Search';
+import React from "react";
 
 type Props = {
     onClick?: () => void;
-    onChange?: () => void;
+    onChange?: React.ChangeEventHandler<HTMLInputElement>
+    autoFocus?: boolean;
 }
 
 const SearchBar = (props: Props) => {
     return (
         <>
-            <div className="searchBar" onClick={props.onClick}>
+            <div className="searchBar">
                 <SearchIcon/>
-                <input type="text" onChange={props.onChange} placeholder="Search for a business"/>
+                <input type="text" placeholder="Search for a business" autoFocus={props.autoFocus} onChange={props.onChange}/>
             </div>
+
         </>
     )
 }

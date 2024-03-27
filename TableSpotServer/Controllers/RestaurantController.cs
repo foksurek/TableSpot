@@ -62,10 +62,9 @@ public class RestaurantController(
     }
     
     [HttpGet("GetByName")]
-    public async Task<ActionResult> GetRestaurantByName([Required] string name, int limit = 10, int offset = 0)
+    public async Task<ActionResult> GetRestaurantByName(string name = "", int limit = 10, int offset = 0)
     {
         List<string> details = [];
-        if (string.IsNullOrEmpty(name)) details.Add("Restaurant name must be correct");
         if (limit < 0 || offset < 0) details.Add("Limit and offset must be greater than 0");
         if (limit > 100) details.Add("Limit must be less than 100");
         if (details.Count > 0) return BadRequest(httpResponseJson.BadRequest(details));

@@ -10,24 +10,7 @@ a {
   text-decoration: none;
   color: black;
 }
-.searchBar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  background: #efefef;
-  border-radius: 5px;
-  padding: 0 10px;
-  > input[type="text"] {
-    background: #efefef;
-    width: 90%;
-    padding: 10px;
-    border-radius: 5px;
-    margin: auto;
-    outline: none;
-    border: none;
-  }
-}
+
 .nav {
   width: 90%;
   padding: 20px 5%;
@@ -79,7 +62,7 @@ a {
       }
     }
   }
-  .searchBar {
+  .searchBarPlaceholder {
     width: 20% !important;
   }
   > ul {
@@ -108,11 +91,26 @@ a {
   > span {
     width: 20%;
     display: block;
-    > button {
+    > a {
       float: right;
       font-weight: bold !important;
       margin: 0 10px !important;
     }
   }
 }
+
+.searchPanel {
+  padding: 30px;
+  margin: 10vh auto 0;
+  border-radius: 10px;
+  width: 50%;
+  background: #ffffff;
+  overflow: auto;
+  max-height: 70vh;
+  .searchBar {
+    input {
+      font-size: 1.4rem !important;
+    }
+  }
+} 
 

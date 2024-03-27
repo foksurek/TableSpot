@@ -76,7 +76,7 @@ public class RestaurantRepositoryService(AppDbContext dbContext) : IRestaurantRe
                 Email = r.Email,
                 Website = r.Website,
                 PhoneNumber = r.PhoneNumber,
-                Category = new CategoryDto
+                Category = new
                 {
                     Id = r.Category.Id,
                     Name = r.Category.Name
