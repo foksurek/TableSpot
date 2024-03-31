@@ -15,7 +15,7 @@ TableSpot is a prototype web application designed to assist restaurants in manag
 - ASP.NET Core
 - MariaDB
 - Vite
-- React
+- React (Typescript)
 - MUI
 
 ## Building
