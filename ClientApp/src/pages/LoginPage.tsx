@@ -52,9 +52,9 @@ const LoginPage = () => {
     
 
     return (
-        <div>
+        <div className="loginBox">
             <h2>Logowanie</h2>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleLogin} className="loginForm">
                 <div>
                     <label>
                         Email:
@@ -63,6 +63,7 @@ const LoginPage = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
+                            maxLength={64}
                         />
                     </label>
                 </div>
@@ -74,12 +75,41 @@ const LoginPage = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
+                            maxLength={64}
                         />
                     </label>
                 </div>
                 <button type="submit">Zaloguj</button>
             </form>
         </div>
+        // <div>
+        //     <h2>Logowanie</h2>
+        //     <form onSubmit={handleLogin}>
+        //         <div>
+        //             <label>
+        //                 Email:
+        //                 <input
+        //                     type="email"
+        //                     value={email}
+        //                     onChange={(e) => setEmail(e.target.value)}
+        //                     required
+        //                 />
+        //             </label>
+        //         </div>
+        //         <div>
+        //             <label>
+        //                 Hasło:
+        //                 <input
+        //                     type="password"
+        //                     value={password}
+        //                     onChange={(e) => setPassword(e.target.value)}
+        //                     required
+        //                 />
+        //             </label>
+        //         </div>
+        //         <button type="submit">Zaloguj</button>
+        //     </form>
+        // </div>
     );
 };
 

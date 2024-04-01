@@ -1,4 +1,10 @@
-﻿.searchBarPlaceholder {
+﻿.pageContainer {
+  margin: 30px auto 0;
+  width: 90%;
+  padding: 0 10px;
+}
+
+.searchBarPlaceholder {
   cursor: text;
   display: flex;
   justify-content: center;
