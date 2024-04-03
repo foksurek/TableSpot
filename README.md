@@ -26,6 +26,7 @@ Remember to install all dependencies and make migrations before running the proj
 
 
 ###### To be updated
+
 ## API Reference
 
 [API DOCS](APIREFERENCE.md)
