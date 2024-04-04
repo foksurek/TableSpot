@@ -61,14 +61,14 @@ public class RestaurantController(
         return Ok(httpResponseJson.Ok(data));
     }
     
-    [HttpGet("GetByName")]
-    public async Task<ActionResult> GetRestaurantByName(string name = "", int limit = 10, int offset = 0)
+    [HttpGet("Search")]
+    public async Task<ActionResult> Search(string query = "", int limit = 10, int offset = 0)
     {
         List<string> details = [];
         if (limit < 0 || offset < 0) details.Add("Limit and offset must be greater than 0");
         if (limit > 100) details.Add("Limit must be less than 100");
         if (details.Count > 0) return BadRequest(httpResponseJson.BadRequest(details));
-        var data = await restaurantRepositoryService.GetRestaurantsByName(name, limit, offset);
+        var data = await restaurantRepositoryService.GetRestaurantsByNameOrDescription(query, limit, offset);
         
         return Ok(httpResponseJson.Ok(data));
     }

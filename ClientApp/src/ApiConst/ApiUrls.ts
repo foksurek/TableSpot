@@ -2,7 +2,7 @@
 
 const API_URLS = {
     RESTAURANT: {
-        GET_BY_NAME: (name: string, limit: number, offset: number) => `${API_BASE_URL}/Restaurant/GetByName?name=${name}&limit=${limit}&offset=${offset}`
+        SEARCH: (query: string, limit: number, offset: number) => `${API_BASE_URL}/Restaurant/Search?query=${query}&limit=${limit}&offset=${offset}`
     }
 }
 

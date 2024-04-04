@@ -9,6 +9,8 @@ public interface IRestaurantRepositoryService
     public Task<List<RestaurantDto>> GetAllRestaurants(int limit, int offset);
     
     public Task<List<RestaurantResponseModel>> GetRestaurantsByName(string name, int limit, int offset);
+    public Task<List<RestaurantResponseModel>> GetRestaurantsByNameOrDescription(string query, int limit, int offset);
+
     public Task<List<RestaurantResponseModel>> GetRestaurantsByCategory(int categoryId, int limit, int offset);
     public Task<List<RestaurantDto>> GetRestaurantsByOwner(int accountId, int limit, int offset);
     public Task CreateRestaurant(RestaurantDto restaurant);

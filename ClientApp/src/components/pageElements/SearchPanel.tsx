@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import {RESTAURANT__GET_BY_NAME} from "../../ApiConst/ApiResponse.ts";
 import axios from "axios";
 import API_URLS from "../../ApiConst/ApiUrls.ts";
+import {Link} from "react-router-dom";
 
 type Props = {
     setSearchModalOpen: (arg0: boolean) => void;
@@ -16,7 +17,7 @@ const SearchPanel = (props: Props) => {
     const [searchQuery, setSearchQuery] = useState<string>("");
     
     const fetchSearchResults = async () => {
-        await axios.get<RESTAURANT__GET_BY_NAME>(API_URLS.RESTAURANT.GET_BY_NAME(searchQuery, 10, 0)).then((response) => {
+        await axios.get<RESTAURANT__GET_BY_NAME>(API_URLS.RESTAURANT.SEARCH(searchQuery, 10, 0)).then((response) => {
             setSearchResults(response.data);
         })
     }
@@ -45,17 +46,20 @@ const SearchPanel = (props: Props) => {
                         <h2>Search results</h2>
                         {searchResults?.data.map((restaurant) => {
                             return (
-                                <div className="searchResultItem" key={restaurant.id}>
-                                    <img onError={handleImageError} className="searchResultImage" src={restaurant.imageUrl} alt="restaurnt cover"/>
-                                    <span className="searchResultName">
+                                <Link to={`restaurant/${restaurant.id}`} onClick={() => {props.setSearchModalOpen(false)}}>
+                                    <div className="searchResultItem" key={restaurant.id}>
+                                        <img onError={handleImageError} className="searchResultImage"
+                                             src={restaurant.imageUrl} alt="restaurnt cover"/>
+                                        <span className="searchResultName">
                                         {restaurant.name}
                                     </span>
-                                    {/*TODO: Add rating*/}
-                                    <span className="searchResultRating">★★★★★</span> 
-                                    <span className="searchResultDescription">
+                                        {/*TODO: Add rating*/}
+                                        <span className="searchResultRating">★★★★★</span>
+                                        <span className="searchResultDescription">
                                         {restaurant.description}
                                     </span>
-                                </div>
+                                    </div>
+                                </Link>
                             )
                         })}
                     </div>

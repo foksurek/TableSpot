@@ -12,7 +12,7 @@ public class AccountController(
     IHttpResponseJsonService httpResponseJsonService,
     IRestaurantRepositoryService restaurantRepositoryService,
     IAccountRepositoryService accountRepositoryService
-    ) : ControllerBase
+) : ControllerBase
 {
     [Authorize]
     [HttpGet("GetAccountData")]
@@ -76,6 +76,33 @@ public class AccountController(
         }).ToList();
         
         return Ok(httpResponseJsonService.Ok(responseData));
+    }
+    
+    
+    [Authorize]
+    [HttpPost("ParseRecentlySeenRestaurants")]
+    public async Task<ActionResult> ParseRecentlySeenRestaurants([FromBody] List<string> restaurantIds)
+    {
+        if (restaurantIds.Count == 0) return BadRequest(httpResponseJsonService.BadRequest(["No restaurant ids provided"]));
+        List<RestaurantResponseModel> data = [];
+        foreach (var id in restaurantIds)
+        {
+            var restaurant = await restaurantRepositoryService.GetRestaurantById(int.Parse(id));
+            if (restaurant == null) return BadRequest(httpResponseJsonService.BadRequest(["Restaurant not found"]));
+            data.Add(new RestaurantResponseModel()
+            {
+                Id = restaurant.Id,
+                Name = restaurant.Name,
+                Address = restaurant.Address,
+                Description = restaurant.Description,
+                ImageUrl = restaurant.ImageUrl,
+                Email = restaurant.Email,
+                Website = restaurant.Website,
+                PhoneNumber = restaurant.PhoneNumber,
+                Category = restaurant.Category
+            });
+        }
+        return Ok(httpResponseJsonService.Ok(data));
     }
 
 }

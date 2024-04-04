@@ -7,6 +7,8 @@ namespace TableSpot.Services;
 
 public class RestaurantRepositoryService(AppDbContext dbContext) : IRestaurantRepositoryService
 {
+    //TODO: Fix response object to RestaurantDto
+    
     public async Task<List<RestaurantDto>> GetAllRestaurants(int limit, int offset)
     {
 
@@ -64,6 +66,34 @@ public class RestaurantRepositoryService(AppDbContext dbContext) : IRestaurantRe
         var responseData = await dbContext.Restaurants
             .Include(r => r.Category)
             .Where(r => r.Name.Contains(name))
+            .Skip(offset)
+            .Take(limit)
+            .Select(r => new RestaurantResponseModel()
+            {
+                Id = r.Id,
+                Name = r.Name,
+                Address = r.Address,
+                Description = r.Description,
+                ImageUrl = r.ImageUrl,
+                Email = r.Email,
+                Website = r.Website,
+                PhoneNumber = r.PhoneNumber,
+                Category = new
+                {
+                    Id = r.Category.Id,
+                    Name = r.Category.Name
+                }
+            })
+            .ToListAsync();
+
+        return responseData;
+    }
+    
+    public async Task<List<RestaurantResponseModel>> GetRestaurantsByNameOrDescription(string query, int limit, int offset)
+    {
+        var responseData = await dbContext.Restaurants
+            .Include(r => r.Category)
+            .Where(r => r.Name.Contains(query) || r.Description.Contains(query))
             .Skip(offset)
             .Take(limit)
             .Select(r => new RestaurantResponseModel()
