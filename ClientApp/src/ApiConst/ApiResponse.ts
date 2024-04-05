@@ -15,3 +15,21 @@
         phoneNumber: string
     }>
 }
+
+export type ACCOUNT__PARSE_RECENTLY_SEARCHED_RESTAURANTS = {
+    code: number;
+    data: Array<{
+        id: number;
+        name: string
+        address: string
+        description: string
+        imageUrl: string
+        category: {
+            id: number
+            name: string
+        }
+        email: string
+        website: string
+        phoneNumber: string
+    }>
+}

@@ -1,8 +1,11 @@
 ﻿using System.Security.Claims;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Mysqlx;
 using TableSpot.Interfaces;
 using TableSpot.Models;
+using TableSpot.Utils;
 
 namespace TableSpot.Controllers;
 
@@ -83,10 +86,12 @@ public class AccountController(
     [HttpPost("ParseRecentlySeenRestaurants")]
     public async Task<ActionResult> ParseRecentlySeenRestaurants([FromBody] List<string> restaurantIds)
     {
-        if (restaurantIds.Count == 0) return BadRequest(httpResponseJsonService.BadRequest(["No restaurant ids provided"]));
+        if (restaurantIds.Count == 0) return NotFound(httpResponseJsonService.NotFound("Nothing has been found"));
         List<RestaurantResponseModel> data = [];
-        foreach (var id in restaurantIds)
+        foreach (var id in restaurantIds.Where(id => !string.IsNullOrEmpty(id)))
         {
+            // check if id is number if not continue
+            if (!Regexes.CheckIfNumber().IsMatch(id)) continue;
             var restaurant = await restaurantRepositoryService.GetRestaurantById(int.Parse(id));
             if (restaurant == null) return BadRequest(httpResponseJsonService.BadRequest(["Restaurant not found"]));
             data.Add(new RestaurantResponseModel()
@@ -102,7 +107,9 @@ public class AccountController(
                 Category = restaurant.Category
             });
         }
+
+        if (data.Count == 0)
+            return NotFound(httpResponseJsonService.NotFound("Nothing has been found"));
         return Ok(httpResponseJsonService.Ok(data));
     }
-
 }
