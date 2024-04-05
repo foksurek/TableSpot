@@ -15,27 +15,31 @@ const Navigation = () => {
     const toggleNav = () => {
         setIsNavOpen(!isNavOpen);
     };
+    
+    const closeNav = () => {
+        setIsNavOpen(false);
+    }
 
     return (
         <>
             {searchModalOpen && <SearchPanel setSearchModalOpen={setSearchModalOpen} searchModalOpen={searchModalOpen}/>}
             <nav className={`nav ${isNavOpen && (document.body.clientWidth < 1700) ? 'open' : ''}`}>
                 <div className="menu-top">
-                    <Link to="/"><h1>TableSpot</h1></Link>
+                    <Link to="/" onClick={closeNav}><h1>TableSpot</h1></Link>
                     <MenuIcon onClick={toggleNav}/>
                 </div>
                 <ul>
-                    <li><Link to="">Home</Link></li>
-                    <li><Link to="">Browse</Link></li>
-                    <li><Link to="">Third option</Link></li>
+                    <li><Link to="" onClick={closeNav}>Home</Link></li>
+                    <li><Link to="" onClick={closeNav}>Browse</Link></li>
+                    <li><Link to="" onClick={closeNav}>Third option</Link></li>
                 </ul>
-                <SearchBarPlaceholder onClick={() => {setSearchModalOpen(true)}}/>
+                <SearchBarPlaceholder onClick={() => {setSearchModalOpen(true); closeNav()}}/>
                 <span>
                 {user ?
-                    <Link to=""><Button variant="contained">Dashboard</Button></Link>
+                    <Link to="" onClick={closeNav}><Button variant="contained">Dashboard</Button></Link>
                     :
-                    <Link to="/login"><Button variant="outlined">Login</Button></Link>}
-                    <Link to=""><Button variant="contained">Add your business</Button></Link>
+                    <Link to="/login" onClick={closeNav}><Button variant="outlined">Login</Button></Link>}
+                    <Link to="" onClick={closeNav}><Button variant="contained">Add your business</Button></Link>
                 </span>
             </nav>
         </>

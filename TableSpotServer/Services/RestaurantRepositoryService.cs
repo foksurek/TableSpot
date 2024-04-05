@@ -57,7 +57,7 @@ public class RestaurantRepositoryService(AppDbContext dbContext) : IRestaurantRe
                     Name = r.Category.Name
                 }
             })
-            .FirstAsync();
+            .FirstOrDefaultAsync();
         return data;
     }
     

@@ -5,14 +5,18 @@ import API_URLS from "../ApiConst/ApiUrls.ts";
 
 const MainPage = () => {
 
-    const [recentlySearched, setRecentlySearched] = useState<ACCOUNT__PARSE_RECENTLY_SEARCHED_RESTAURANTS | null>(null)
+    const [recentlySearched, setRecentlySearched] = useState<ACCOUNT__PARSE_RECENTLY_SEARCHED_RESTAURANTS | string>("")
 
     const fetchRecentlySearched = async () => {
         const restaurants = localStorage.getItem("restaurants");
         const jsonObject = JSON.parse(restaurants as unknown as string);
         await axios.post<ACCOUNT__PARSE_RECENTLY_SEARCHED_RESTAURANTS>(API_URLS.ACCOUNT.PARSE_RECENTLY_SEARCHED_RESTAURANTS, {
-            data: jsonObject
-        })
+            ids: jsonObject
+        }, {withCredentials: true}).then((response) => {
+            setRecentlySearched(response.data);
+        }).catch((error) => {
+            setRecentlySearched(error.response.data.message)
+        });
     }
 
     useEffect(() => {
@@ -25,16 +29,16 @@ const MainPage = () => {
                 <section id="recentlySearched">
                     {/*TODO: Think about how good is it*/}
                     <h2>Recently searched</h2>
-                    {localStorage.getItem("restaurants") ?
-                        (JSON.parse(localStorage.getItem("restaurants") as unknown as string).map((restaurant: string) => {
+                    {typeof recentlySearched !== "string" ?
+                        (recentlySearched.data.map((restaurant) => {
                             return (
-                                <div key={restaurant}>
-                                    <a href={`/restaurant/${restaurant}`}>{restaurant}</a>
+                                <div key={restaurant.id}>
+                                    <a href={`/restaurant/${restaurant}`}>{restaurant.id}</a>
                                 </div>
                             )
                         }))
                         :
-                        (<span>Nothing</span>)
+                        (<span>{recentlySearched}</span>)
                     }
                 </section>
             </main>

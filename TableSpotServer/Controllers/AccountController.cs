@@ -82,18 +82,21 @@ public class AccountController(
     }
     
     
+
+    
     [Authorize]
     [HttpPost("ParseRecentlySeenRestaurants")]
-    public async Task<ActionResult> ParseRecentlySeenRestaurants([FromBody] List<string> restaurantIds)
+    public async Task<ActionResult> ParseRecentlySeenRestaurants([FromBody] IdListModel model)
     {
+        var restaurantIds = model.Ids;
+        if (restaurantIds == null) return NotFound(httpResponseJsonService.NotFound("Nothing has been found"));
         if (restaurantIds.Count == 0) return NotFound(httpResponseJsonService.NotFound("Nothing has been found"));
         List<RestaurantResponseModel> data = [];
         foreach (var id in restaurantIds.Where(id => !string.IsNullOrEmpty(id)))
         {
-            // check if id is number if not continue
             if (!Regexes.CheckIfNumber().IsMatch(id)) continue;
             var restaurant = await restaurantRepositoryService.GetRestaurantById(int.Parse(id));
-            if (restaurant == null) return BadRequest(httpResponseJsonService.BadRequest(["Restaurant not found"]));
+            if (restaurant == null) continue;
             data.Add(new RestaurantResponseModel()
             {
                 Id = restaurant.Id,
@@ -112,4 +115,5 @@ public class AccountController(
             return NotFound(httpResponseJsonService.NotFound("Nothing has been found"));
         return Ok(httpResponseJsonService.Ok(data));
     }
+    
 }
