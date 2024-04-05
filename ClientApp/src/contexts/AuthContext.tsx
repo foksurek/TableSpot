@@ -1,5 +1,6 @@
 ﻿import React, {createContext, useContext, useEffect, useState} from 'react';
 import axios from 'axios';
+import API_URLS from "../ApiConst/ApiUrls.ts";
 
 type UserProps = {
     id: number;
@@ -37,7 +38,7 @@ export const AuthProvider = (props: Props) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            let resp = await axios.get<ApiResponse>('http://localhost:5115/Api/Account/GetAccountData', {withCredentials: true});
+            let resp = await axios.get<ApiResponse>(API_URLS.ACCOUNT.GET_ACCOUNT_DATA, {withCredentials: true});
             let data = resp.data;
             setUser({
                 id: parseInt(data.data.accountId),

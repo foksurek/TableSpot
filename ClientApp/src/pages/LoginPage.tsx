@@ -1,6 +1,7 @@
 ﻿import React, { useState } from 'react';
 import {useAuth} from "../contexts/AuthContext.tsx";
 import axios from "axios";
+import API_URLS from "../ApiConst/ApiUrls.ts";
 
 type ApiResponse = {
     code: number;
@@ -24,7 +25,7 @@ const LoginPage = () => {
         e.preventDefault();
         
         const fetchData = async () => {
-            let resp = await axios.post<ApiResponse>('http://localhost:5115/api/Auth/Login', {
+            let resp = await axios.post<ApiResponse>(API_URLS.AUTHORIZATION.LOGIN, {
                 email,
                 password
             }, {withCredentials: true});
