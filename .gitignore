@@ -10,6 +10,7 @@ riderModule.iml
 *.njsproj
 *.sln
 *.sw?
+*.exe
 
 # Csharp proj
 TableSpotServer/bin/
