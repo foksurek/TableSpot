@@ -1,4 +1,4 @@
-﻿const API_BASE_URL = "http://localhost:5115/Api";
+﻿const API_BASE_URL = "http://localhost:5000/Api";
 
 const API_URLS = {
     ACCOUNT: {

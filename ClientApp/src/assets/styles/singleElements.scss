@@ -88,3 +88,12 @@
     -webkit-box-orient: vertical;
   }
 }
+
+.blueLink {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  &:hover {
+    color: #0056b3;
+  }
+}

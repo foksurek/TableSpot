@@ -138,7 +138,7 @@ a {
             background: #0056b3;
         }
     }
-    input[type="email"], input[type="password"] {
+    input[type="email"],input[type="text"], input[type="password"] {
       width: 98%;
       padding: 10px 1%;
       margin: 10px 0;
@@ -147,6 +147,10 @@ a {
     }
     input {
       font-size: 1.4rem !important;
+    }
+    .loginFormButtons {
+      display: flex;
+      justify-content: space-between;
     }
   }
 }

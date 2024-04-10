@@ -2,6 +2,7 @@
 import LoginPage from "./pages/LoginPage.tsx";
 import MainPage from "./pages/MainPage.tsx";
 import RestaurantPage from "./pages/RestaurantPage.tsx";
+import RegisterPage from "./pages/RegisterPage.tsx";
 
 const Routes = () => {
     return (
@@ -10,6 +11,7 @@ const Routes = () => {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/" element={<MainPage />} />
                 <Route path="/restaurant/:id" element={<RestaurantPage />} />
+                <Route path="/register" element={<RegisterPage/>} />
                 <Route path="*" element={<h1>404 - Not Found</h1>} />
             </Router>
         </>

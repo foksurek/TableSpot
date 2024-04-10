@@ -2,9 +2,11 @@
 import {ACCOUNT__PARSE_RECENTLY_SEARCHED_RESTAURANTS} from "../ApiConst/ApiResponse.ts";
 import axios from "axios";
 import API_URLS from "../ApiConst/ApiUrls.ts";
+import {useAuth} from "../contexts/AuthContext.tsx";
 
 const MainPage = () => {
 
+    const {user} = useAuth();
     const [recentlySearched, setRecentlySearched] = useState<ACCOUNT__PARSE_RECENTLY_SEARCHED_RESTAURANTS | string>("")
 
     const fetchRecentlySearched = async () => {
@@ -23,6 +25,7 @@ const MainPage = () => {
         fetchRecentlySearched();
     }, []);
 
+    if (user)
     return(
         <>
             <main className="pageContainer">
@@ -41,6 +44,14 @@ const MainPage = () => {
                         (<span>{recentlySearched}</span>)
                     }
                 </section>
+            </main>
+        </>
+    )
+    
+    return (
+        <>
+            <main className="pageContainer">
+                
             </main>
         </>
     )

@@ -2,6 +2,7 @@
 import {useAuth} from "../contexts/AuthContext.tsx";
 import axios from "axios";
 import API_URLS from "../ApiConst/ApiUrls.ts";
+import {Link} from "react-router-dom";
 
 type ApiResponse = {
     code: number;
@@ -80,37 +81,12 @@ const LoginPage = () => {
                         />
                     </label>
                 </div>
-                <button type="submit">Zaloguj</button>
+                <div className="loginFormButtons">
+                    <button type="submit">Zaloguj</button>
+                    <span>Dont have account yet? <Link className="blueLink" to="/register">REGISTER NOW</Link></span>
+                </div>
             </form>
         </div>
-        // <div>
-        //     <h2>Logowanie</h2>
-        //     <form onSubmit={handleLogin}>
-        //         <div>
-        //             <label>
-        //                 Email:
-        //                 <input
-        //                     type="email"
-        //                     value={email}
-        //                     onChange={(e) => setEmail(e.target.value)}
-        //                     required
-        //                 />
-        //             </label>
-        //         </div>
-        //         <div>
-        //             <label>
-        //                 Hasło:
-        //                 <input
-        //                     type="password"
-        //                     value={password}
-        //                     onChange={(e) => setPassword(e.target.value)}
-        //                     required
-        //                 />
-        //             </label>
-        //         </div>
-        //         <button type="submit">Zaloguj</button>
-        //     </form>
-        // </div>
     );
 };
 

@@ -1,6 +1,6 @@
 ﻿:root { 
   @media only screen and (max-width: 1700px) {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
@@ -92,6 +92,18 @@
       display: -webkit-box;
       -webkit-line-clamp: 6;
       -webkit-box-orient: vertical;
+    }
+  }
+}
+.loginBox {
+  .loginForm {
+    .loginFormButtons {
+      @media only screen and (max-width: 1700px) {
+        flex-direction: column;
+        button {
+          width: 100%;
+        }
+      }
     }
   }
 }
