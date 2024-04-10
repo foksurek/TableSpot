@@ -36,4 +36,11 @@ public class AuthService(AppDbContext dbContext)
             ExpiresUtc = DateTimeOffset.Now.AddDays(7)
         });
     }
+    
+    public async Task SignOutAsync(HttpContext context)
+    {
+        await context.SignOutAsync();
+    }
+    
+    
 }

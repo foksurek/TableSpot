@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Mysqlx;
 using TableSpot.Interfaces;
 using TableSpot.Models;
+using TableSpot.Services;
 using TableSpot.Utils;
 
 namespace TableSpot.Controllers;
@@ -14,7 +15,8 @@ namespace TableSpot.Controllers;
 public class AccountController(
     IHttpResponseJsonService httpResponseJsonService,
     IRestaurantRepositoryService restaurantRepositoryService,
-    IAccountRepositoryService accountRepositoryService
+    IAccountRepositoryService accountRepositoryService,
+    AuthService authService
 ) : ControllerBase
 {
     [Authorize]
@@ -28,6 +30,12 @@ public class AccountController(
             id = (int)accountTypeModel;
         }
         var data = await accountRepositoryService.GetAccount(User.Identity?.Name!);
+        if (data == null)
+        {
+            await authService.SignOutAsync(HttpContext);
+            return NotFound(httpResponseJsonService.NotFound("Account not found"));
+        }
+        
         var account = new
         {
             Name = data!.Name,
@@ -49,8 +57,15 @@ public class AccountController(
     {
         List<string> details = [];
         if (offset < 0) details.Add("Offset must be greater than or equal to 0");
-        if (limit < 1) details.Add("Limit must be greater than 0");
-        if (limit > 100) details.Add("Limit must be less than or equal to 100");
+        switch (limit)
+        {
+            case < 1:
+                details.Add("Limit must be greater than 0");
+                break;
+            case > 100:
+                details.Add("Limit must be less than or equal to 100");
+                break;
+        }
 
         if (details.Count > 0) return BadRequest(httpResponseJsonService.BadRequest(details));
         var data = await restaurantRepositoryService.GetRestaurantsByOwner(
