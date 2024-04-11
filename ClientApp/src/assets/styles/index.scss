@@ -138,15 +138,18 @@ a {
             background: #0056b3;
         }
     }
-    input[type="email"],input[type="text"], input[type="password"] {
+    input[type="email"],input[type="text"], input[type="password"], select  {
       width: 98%;
       padding: 10px 1%;
       margin: 10px 0;
       border-radius: 5px;
       border: 1px solid #ced4da;
     }
-    input {
-      font-size: 1.4rem !important;
+    select {
+      width: 100%;
+    }
+    input, select {
+      font-size: 1.2rem !important;
     }
     .loginFormButtons {
       display: flex;

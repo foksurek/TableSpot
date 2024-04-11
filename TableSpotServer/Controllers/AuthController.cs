@@ -38,6 +38,12 @@ public class AuthController(
         }));
     }
     
+    public async Task<ActionResult> Logout()
+    {
+        await authService.SignOutAsync(HttpContext);
+        return Ok(httpResponseJsonService.Ok("User logged out"));
+    }
+    
     [HttpPost("CreateAccount")]
     public async Task<ActionResult> CreateAccount([FromBody] CreateAccountModel model)
     {

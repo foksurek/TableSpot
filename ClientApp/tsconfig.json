@@ -21,14 +21,7 @@
     "noFallthroughCasesInSwitch": true,
 
     /* Mapping */
-    "baseUrl": "../",
-    "paths": {
-      "@/*": ["/*"],
-      "Src/*": ["src/*"],
-      "Components/*": ["src/components/*"],
-      "Pages/*": ["src/pages/*"],
-      
-    }
+    "baseUrl": "src",
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
