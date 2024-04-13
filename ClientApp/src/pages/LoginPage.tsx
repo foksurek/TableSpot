@@ -33,7 +33,8 @@ const LoginPage = () => {
             if (resp.status === 200) {
                 setUser({ 
                     id: parseInt(resp.data.data.accountId),
-                    email: resp.data.data.email
+                    email: resp.data.data.email,
+                    accountType: parseInt(resp.data.data.accountType.id)
                 });
             }
             if (resp.status === 401) {

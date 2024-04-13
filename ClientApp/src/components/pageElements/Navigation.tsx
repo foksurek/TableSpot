@@ -5,19 +5,27 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchBarPlaceholder from "../SearchBarPlaceholder.tsx";
 import SearchPanel from "./SearchPanel.tsx";
 import {useAuth} from "../../contexts/AuthContext.tsx";
+import axios from "axios";
+import API_URLS from "../../ApiConst/ApiUrls.ts";
 
 const Navigation = () => {
     const [isNavOpen, setIsNavOpen] = useState(false);
     const [searchModalOpen, setSearchModalOpen] = useState(false);
 
     const {user} = useAuth();
-    
+
     const toggleNav = () => {
         setIsNavOpen(!isNavOpen);
     };
-    
+
     const closeNav = () => {
         setIsNavOpen(false);
+    }
+    
+    const logout = async () => {
+        await axios.get(API_URLS.AUTHORIZATION.LOGOUT, {withCredentials: true}).then(() => {
+            window.location.href = '/';
+        });
     }
 
     return (
@@ -35,11 +43,10 @@ const Navigation = () => {
                 </ul>
                 <SearchBarPlaceholder onClick={() => {setSearchModalOpen(true); closeNav()}}/>
                 <span>
-                {user ?
-                    <Link to="" onClick={closeNav}><Button variant="contained">Dashboard</Button></Link>
-                    :
-                    <Link to="/login" onClick={closeNav}><Button variant="outlined">Login</Button></Link>}
-                    <Link to="" onClick={closeNav}><Button variant="contained">Add your business</Button></Link>
+                    {user && user.accountType === 3 && <Link to="" onClick={closeNav}><Button variant="contained">Dashboard</Button></Link>}
+                    {!user &&    <Link to="/login" onClick={closeNav}><Button variant="outlined">Login</Button></Link>}
+                    {user?.accountType == 1 || !user && <Link to="" onClick={closeNav}><Button variant="contained">Add your business</Button></Link>}
+                    {user &&<Button variant="outlined" onClick={logout} >Logout</Button>}
                 </span>
             </nav>
         </>

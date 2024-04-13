@@ -8,7 +8,8 @@ const API_URLS = {
     AUTHORIZATION: {
         LOGIN: `${API_BASE_URL}/Auth/Login`,
         CREATE_ACCOUNT: `${API_BASE_URL}/Auth/CreateAccount`,
-        CHECK_SESSION:  `${API_BASE_URL}/Auth/CheckSession`
+        CHECK_SESSION:  `${API_BASE_URL}/Auth/CheckSession`,
+        LOGOUT: `${API_BASE_URL}/Auth/Logout`
     },
     RESTAURANT: {
         SEARCH: (query: string, limit: number, offset: number) => `${API_BASE_URL}/Restaurant/Search?query=${query}&limit=${limit}&offset=${offset}`,

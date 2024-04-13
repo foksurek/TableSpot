@@ -9,7 +9,7 @@ import MainAlert from "components/MainAlert.tsx";
 const RegisterPage = () => {
 
     const navigate = useNavigate();
-    const { user, setUser } = useAuth();
+    const { user } = useAuth();
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [errorVariant, setErrorVariant] = useState("info");
@@ -33,10 +33,9 @@ const RegisterPage = () => {
                 accountTypeId: accountType
             }, {withCredentials: true}).then((response) => {
                 if (response.status === 200) {
-                    setUser({
-                        id: parseInt(response.data.data.accountId),
-                        email: response.data.data.email
-                    });
+                    setError(true);
+                    setErrorVariant(ErrorVariants.success);
+                    setErrorMessage("Account created successfully. Please log in.");
                 }
             }).catch((error) => {
                 setErrorVariant(ErrorVariants.error)
@@ -120,7 +119,7 @@ const RegisterPage = () => {
                         </label>
                     </div>
                     <div className="loginFormButtons">
-                        <button type="submit">Zaloguj</button>
+                        <button type="submit">Register</button>
                     </div>
                 </form>
             </div>

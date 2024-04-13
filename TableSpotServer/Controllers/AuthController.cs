@@ -34,10 +34,17 @@ public class AuthController(
         return Ok(httpResponseJsonService.Ok(new
         {
             Id = user.Id,
-            Email = user.Email
+            Email = user.Email,
+            AccountType = new
+            {
+                Id = user.AccountTypeId,
+                Type = User.FindFirst(ClaimTypes.Role)?.Value
+            }
         }));
     }
     
+    [Authorize]
+    [HttpGet("Logout")]
     public async Task<ActionResult> Logout()
     {
         await authService.SignOutAsync(HttpContext);

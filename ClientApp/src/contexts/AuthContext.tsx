@@ -5,6 +5,7 @@ import API_URLS from "../ApiConst/ApiUrls.ts";
 type UserProps = {
     id: number;
     email: string;
+    accountType: number;
 }
 
 type ApiResponse = {
@@ -34,7 +35,7 @@ type Props = {
 };
 
 export const AuthProvider = (props: Props) => {
-    const [user, setUser] = useState<{ id: number; email: string } | null>(null);
+    const [user, setUser] = useState<{ id: number; email: string; accountType: number } | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -42,7 +43,8 @@ export const AuthProvider = (props: Props) => {
             let data = resp.data;
             setUser({
                 id: parseInt(data.data.accountId),
-                email: data.data.email
+                email: data.data.email,
+                accountType: parseInt(data.data.accountType.id)
             });
         }
         fetchData();
@@ -51,7 +53,7 @@ export const AuthProvider = (props: Props) => {
     
     
     return (
-        <AuthContext.Provider value={{ user, setUser }}>
+        <AuthContext.Provider value={{ user, setUser}}>
             {props.children}
         </AuthContext.Provider>
     );
