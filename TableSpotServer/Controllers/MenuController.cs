@@ -23,14 +23,14 @@ public class MenuController(
     
     [HttpPost("AddToMenu")]
     [Authorize(Roles = nameof(AccountTypeModel.RestaurantOwner))]
-    public async Task<ActionResult> AddToMenu(int? restaurantId, [FromBody] AddToMenuModel menu)
+    public async Task<ActionResult> AddToMenu([FromBody] AddToMenuModel menu)
     {
-        if (restaurantId == null) return BadRequest(httpResponseJsonService.BadRequest(["RestaurantId is required"]));
-        if (!restaurantRepositoryService.RestaurantExists((int)restaurantId)) 
+        if (!ModelState.IsValid) return BadRequest(httpResponseJsonService.BadRequest(["Menu item must be correctly filled"]));
+        if (!restaurantRepositoryService.RestaurantExists(menu.RestaurantId)) 
             return BadRequest(httpResponseJsonService.BadRequest(["Restaurant does not exist"]));
-        if (!restaurantRepositoryService.CheckIfOwner((int)restaurantId!, int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!)!))
+        if (!restaurantRepositoryService.CheckIfOwner(menu.RestaurantId, int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!)!))
             return Unauthorized(httpResponseJsonService.Unauthorized(["You are not the owner of this restaurant"]));
-        await menuRepositoryService.AddToMenu((int)restaurantId, menu);
+        await menuRepositoryService.AddToMenu(menu.RestaurantId, menu);
         return Ok(httpResponseJsonService.Ok("Menu item added successfully"));
     }
 }
