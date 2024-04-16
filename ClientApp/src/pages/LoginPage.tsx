@@ -24,14 +24,14 @@ const LoginPage = () => {
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
-        
+
         const fetchData = async () => {
             let resp = await axios.post<ApiResponse>(API_URLS.AUTHORIZATION.LOGIN, {
                 email,
                 password
             }, {withCredentials: true});
             if (resp.status === 200) {
-                setUser({ 
+                setUser({
                     id: parseInt(resp.data.data.accountId),
                     email: resp.data.data.email,
                     accountType: parseInt(resp.data.data.accountType.id)
@@ -41,10 +41,10 @@ const LoginPage = () => {
                 alert('Niepoprawne dane logowania');
             }
         }
-        
+
         fetchData();
     };
-    
+
     if (user) {
         return (
             <div>
@@ -52,36 +52,24 @@ const LoginPage = () => {
             </div>
         );
     }
-    
+
 
     return (
         <div className="loginBox">
-            <h2>Logowanie</h2>
+            <h2>Login</h2>
             <form onSubmit={handleLogin} className="loginForm">
-                <div>
-                    <label>
-                        Email:
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            maxLength={64}
-                        />
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        Hasło:
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            maxLength={64}
-                        />
-                    </label>
-                </div>
+                <label>Email:</label>
+                <input type="email"
+                       value={email}
+                       onChange={(e) => setEmail(e.target.value)}
+                       required
+                       maxLength={64}/>
+                <label>Password:</label>
+                <input type="password"
+                       value={password}
+                       onChange={(e) => setPassword(e.target.value)}
+                       required
+                       maxLength={64}/>
                 <div className="loginFormButtons">
                     <button type="submit">Zaloguj</button>
                     <span>Dont have account yet? <Link className="blueLink" to="/register">REGISTER NOW</Link></span>

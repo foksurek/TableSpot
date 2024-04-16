@@ -38,7 +38,7 @@ public class AuthController(
             AccountType = new
             {
                 Id = user.AccountTypeId,
-                Type = User.FindFirst(ClaimTypes.Role)?.Value
+                Type = Enum.GetName(typeof(AccountTypeModel), user.AccountTypeId)
             }
         }));
     }

@@ -21,7 +21,7 @@ const Navigation = () => {
     const closeNav = () => {
         setIsNavOpen(false);
     }
-    
+
     const logout = async () => {
         await axios.get(API_URLS.AUTHORIZATION.LOGOUT, {withCredentials: true}).then(() => {
             window.location.href = '/';
@@ -43,10 +43,18 @@ const Navigation = () => {
                 </ul>
                 <SearchBarPlaceholder onClick={() => {setSearchModalOpen(true); closeNav()}}/>
                 <span>
-                    {user && user.accountType === 3 && <Link to="" onClick={closeNav}><Button variant="contained">Dashboard</Button></Link>}
-                    {!user &&    <Link to="/login" onClick={closeNav}><Button variant="outlined">Login</Button></Link>}
-                    {user?.accountType == 1 || !user && <Link to="" onClick={closeNav}><Button variant="contained">Add your business</Button></Link>}
-                    {user &&<Button variant="outlined" onClick={logout} >Logout</Button>}
+                    {user &&
+                        <Button variant="outlined" onClick={logout} >Logout</Button>
+                    }
+                    {user && user.accountType === 3 && 
+                        <Link to="/dashboard" onClick={closeNav}><Button variant="contained">Dashboard</Button></Link>
+                    }
+                    {!user &&    
+                        <Link to="/login" onClick={closeNav}><Button variant="outlined">Login</Button></Link>
+                    }
+                    {user?.accountType == 1 || !user && 
+                        <Link to="" onClick={closeNav}><Button variant="contained">Add your business</Button></Link>
+                    }
                 </span>
             </nav>
         </>

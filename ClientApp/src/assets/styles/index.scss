@@ -18,12 +18,13 @@ a {
   -webkit-box-shadow: 0 8px 24px -18px rgba(66, 68, 90, 1);
   -moz-box-shadow: 0 8px 24px -18px rgba(66, 68, 90, 1);
   box-shadow: 0 8px 24px -18px rgba(66, 68, 90, 1);
-  position: relative;
+  position: fixed;
   top: 0;
   left: 0;
   display: flex;
   justify-content: space-between;
   align-content: center;
+  z-index: 100;
   > * {
     margin: auto 0;
   }
@@ -112,7 +113,7 @@ a {
       font-size: 1.4rem !important;
     }
   }
-} 
+}
 
 
 .loginBox {
@@ -125,18 +126,18 @@ a {
   max-height: 70vh;
   .loginForm {
     button[type="submit"] {
-        padding: 10px;
-        margin: 10px 0;
-        border-radius: 5px;
-        border: 1px solid #ced4da;
-        background: #007bff;
-        color: white;
-        font-weight: bold;
-        transition: 0.2s;
-        &:hover {
-            cursor: pointer;
-            background: #0056b3;
-        }
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ced4da;
+      background: #007bff;
+      color: white;
+      font-weight: bold;
+      transition: 0.2s;
+      &:hover {
+        cursor: pointer;
+        background: #0056b3;
+      }
     }
     input[type="email"],input[type="text"], input[type="password"], select  {
       width: 98%;
@@ -149,11 +150,62 @@ a {
       width: 100%;
     }
     input, select {
-      font-size: 1.2rem !important;
+      font-size: 1rem !important;
     }
     .loginFormButtons {
       display: flex;
       justify-content: space-between;
+    }
+  }
+}
+
+.sideNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10%;
+  height: 100%;
+  background: #ffffff;
+  padding: 20px;
+  -webkit-box-shadow: 0 8px 24px -18px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 0 8px 24px -18px rgba(66, 68, 90, 1);
+  box-shadow: 0 8px 24px -18px rgba(66, 68, 90, 1);
+  z-index: 99;
+  .sideNavHeader {
+    margin-top: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    h2 {
+      margin: 0;
+    }
+    bottom: 0;
+  }
+  .sideNavList {
+    position: relative;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+    li {
+      margin: 10px 0;
+      display: flex;
+      vertical-align: center;
+      a {
+        display: block;
+        height: 100%;
+        width: fit-content;
+        color: black;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.2s;
+        vertical-align: center;
+        margin: auto 0 auto 0.7rem;
+      }
+      svg {
+        margin: auto 0;
+      }
     }
   }
 }
