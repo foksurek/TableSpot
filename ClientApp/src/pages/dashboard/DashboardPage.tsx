@@ -6,8 +6,11 @@ const DashboardPage = () => {
 
     const navigate = useNavigate();
     const { user } = useAuth();
-    if (!user) return navigate("/login");
-    if (user.accountType === 1) return navigate("/");
+    if (!user) {
+        navigate("/login");
+        return;
+    }
+    if (user.accountType === 1) navigate("/");
     
     return (
         <>

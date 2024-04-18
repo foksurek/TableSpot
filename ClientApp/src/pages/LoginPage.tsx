@@ -1,9 +1,9 @@
 ﻿import React, { useState } from 'react';
-import {useAuth} from "../contexts/AuthContext.tsx";
+import {useAuth} from "contexts/AuthContext.tsx";
 import axios from "axios";
-import API_URLS from "../ApiConst/ApiUrls.ts";
+import API_URLS from "ApiConst/ApiUrls.ts";
 import {Link, useNavigate} from "react-router-dom";
-import MainAlert from "../components/MainAlert.tsx";
+import MainAlert from "components/MainAlert.tsx";
 
 type ApiResponse = {
     code: number;
@@ -31,14 +31,7 @@ const LoginPage = () => {
 
 
     if (user) {
-        if (user.accountType === 1)
-            return (
-                navigate("/")
-            );
-        else
-            return (
-                navigate("/dashboard")
-            );
+        navigate("/")
     }
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();

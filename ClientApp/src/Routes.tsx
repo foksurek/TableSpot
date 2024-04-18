@@ -1,12 +1,13 @@
 ﻿import {Routes as Router, Route} from "react-router-dom";
-import LoginPage from "./pages/LoginPage.tsx";
-import MainPage from "./pages/MainPage.tsx";
-import RestaurantPage from "./pages/RestaurantPage.tsx";
-import RegisterPage from "./pages/RegisterPage.tsx";
-import DashboardPage from "./pages/dashboard/DashboardPage.tsx";
-import RestaurantsPage from "./pages/dashboard/RestaurantsPage.tsx";
+import LoginPage from "pages/LoginPage.tsx";
+import MainPage from "pages/MainPage.tsx";
+import RestaurantPage from "pages/RestaurantPage.tsx";
+import RegisterPage from "pages/RegisterPage.tsx";
+import DashboardPage from "pages/dashboard/DashboardPage.tsx";
+import RestaurantsPage from "pages/dashboard/RestaurantsPage.tsx";
 
 const Routes = () => {
+    // @ts-ignore
     return (
         <>
             <Router>

@@ -11,19 +11,13 @@ const restaurantsPage = () => {
     
     const [restaurants, setRestaurants] = useState<ACCOUNT__GET_MY_RESTAURANTS | undefined>();
 
-    const { user } = useAuth();
     const navigate = useNavigate();
-
-    if (user) {
-        if (user.accountType === 1)
-            return (
-                navigate("/")
-            );
-        else
-            return (
-                navigate("/dashboard")
-            );
+    const { user } = useAuth();
+    if (!user) {
+        navigate("/login");
+        return;
     }
+    if (user.accountType === 1) navigate("/");
     
     useEffect(() => {
         const fetchData = async () => {
