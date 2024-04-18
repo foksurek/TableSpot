@@ -2,7 +2,7 @@
 import {useAuth} from "../contexts/AuthContext.tsx";
 import axios from "axios";
 import API_URLS from "../ApiConst/ApiUrls.ts";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import MainAlert from "../components/MainAlert.tsx";
 
 type ApiResponse = {
@@ -19,7 +19,9 @@ type ApiResponse = {
 
 
 const LoginPage = () => {
+    const navigate = useNavigate();
     const { user, setUser } = useAuth();
+    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -28,6 +30,16 @@ const LoginPage = () => {
     const [errorVariant, setErrorVariant] = useState("info");
 
 
+    if (user) {
+        if (user.accountType === 1)
+            return (
+                navigate("/")
+            );
+        else
+            return (
+                navigate("/dashboard")
+            );
+    }
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -52,16 +64,6 @@ const LoginPage = () => {
 
         fetchData();
     };
-
-    if (user) {
-        return (
-            <div>
-                {/*TODO: Change to name ands surname*/}
-                <h2>Hello, {user.email}</h2>
-            </div>
-        );
-    }
-
 
     return (
         <>

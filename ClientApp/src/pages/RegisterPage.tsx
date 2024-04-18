@@ -60,7 +60,14 @@ const RegisterPage = () => {
         fetchData();
     };
     if (user) {
-        navigate('/dashboard');
+        if (user.accountType === 1)
+            return (
+                navigate("/")
+            );
+        else
+            return (
+                navigate("/dashboard")
+            );
     }
 
     return (

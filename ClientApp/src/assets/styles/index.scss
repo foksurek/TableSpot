@@ -228,7 +228,6 @@ a {
   }
 }
 .DashboardRestaurantsContainer {
-  background: maroon;
   width: 80%;
   height: 80vh;
   margin: 5vh auto;
@@ -236,9 +235,20 @@ a {
     display: flex;
     justify-content: space-between;
     align-content: center;
-    > * {
-      margin: auto 5%;
-      height: fit-content;
+    > h1, .divButton {
+      margin: auto 5% !important;
+    }
+    .divButton {
+      padding: 10px;
+      border-radius: 5px;
+      background: #007bff;
+      color: white;
+      font-weight: bold;
+      transition: 0.2s;
+      &:hover {
+        cursor: pointer;
+        background: #0056b3;
+      }
     }
   }
 }

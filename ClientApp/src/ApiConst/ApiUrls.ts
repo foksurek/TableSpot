@@ -3,7 +3,8 @@
 const API_URLS = {
     ACCOUNT: {
         GET_ACCOUNT_DATA: `${API_BASE_URL}/Account/GetAccountData`,
-        PARSE_RECENTLY_SEARCHED_RESTAURANTS: `${API_BASE_URL}/Account/ParseRecentlySeenRestaurants`
+        PARSE_RECENTLY_SEARCHED_RESTAURANTS: `${API_BASE_URL}/Account/ParseRecentlySeenRestaurants`,
+        GET_MY_RESTAURANTS: `${API_BASE_URL}/Account/GetMyRestaurants`
     },
     AUTHORIZATION: {
         LOGIN: `${API_BASE_URL}/Auth/Login`,

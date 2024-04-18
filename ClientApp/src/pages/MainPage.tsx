@@ -3,6 +3,7 @@ import {ACCOUNT__PARSE_RECENTLY_SEARCHED_RESTAURANTS} from "../ApiConst/ApiRespo
 import axios from "axios";
 import API_URLS from "../ApiConst/ApiUrls.ts";
 import {useAuth} from "../contexts/AuthContext.tsx";
+import { Link } from "react-router-dom";
 
 const MainPage = () => {
 
@@ -36,7 +37,7 @@ const MainPage = () => {
                         (recentlySearched.data.map((restaurant) => {
                             return (
                                 <div key={restaurant.id}>
-                                    <a href={`/restaurant/${restaurant}`}>{restaurant.id}</a>
+                                    <Link to={`/restaurant/${restaurant.id}`}>{restaurant.id}</Link>
                                 </div>
                             )
                         }))
