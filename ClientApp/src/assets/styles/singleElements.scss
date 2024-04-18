@@ -5,10 +5,11 @@
 }
 
 .alert {
-  width: 80%;
+  width: 60%;
   margin: 0 auto;
-  position: relative;
-  top: 5vh
+  position: absolute;
+  top: 13vh;
+  transform: translateX(33%);
 }
 
 .searchBarPlaceholder {

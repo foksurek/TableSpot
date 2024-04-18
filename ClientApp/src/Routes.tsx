@@ -3,7 +3,8 @@ import LoginPage from "./pages/LoginPage.tsx";
 import MainPage from "./pages/MainPage.tsx";
 import RestaurantPage from "./pages/RestaurantPage.tsx";
 import RegisterPage from "./pages/RegisterPage.tsx";
-import DashboardPage from "./pages/DashboardPage.tsx";
+import DashboardPage from "./pages/dashboard/DashboardPage.tsx";
+import RestaurantsPage from "./pages/dashboard/RestaurantsPage.tsx";
 
 const Routes = () => {
     return (
@@ -13,7 +14,9 @@ const Routes = () => {
                 <Route path="/" element={<MainPage />} />
                 <Route path="/restaurant/:id" element={<RestaurantPage />} />
                 <Route path="/register" element={<RegisterPage/>} />
-                <Route path="/dashboard" element={<DashboardPage/>} />
+                <Route path="/dashboard" element={<DashboardPage/>}/>
+                <Route path="/dashboard/employees" element={<DashboardPage/>} />
+                <Route path="/dashboard/restaurants" element={<RestaurantsPage/>} />
                 <Route path="*" element={<h1>404 - Not Found</h1>} />
             </Router>
         </>

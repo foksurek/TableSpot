@@ -56,6 +56,8 @@
      margin-top: 10px;
      button {
        width: 100%;
+       float: none;
+       margin: 0;
      }
      a {
        margin: 5px 0 !important;
@@ -105,5 +107,23 @@
         }
       }
     }
+  }
+}
+
+.sideNavHidden {
+  @media only screen and (max-width: 1700px) {
+    transform: translateX(-85%) !important;
+    height: 10px;
+    top: 100px;
+    border-radius: 0 20px 20px 0;
+    svg {
+      margin-top: -145px;
+    }
+  }
+}
+.sideNav {
+  @media only screen and (max-width: 1700px) {
+    width: 100%;
+    transform: translateX(0%);
   }
 }

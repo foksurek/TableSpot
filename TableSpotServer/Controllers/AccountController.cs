@@ -37,6 +37,7 @@ public class AccountController(
             return NotFound(httpResponseJsonService.NotFound("Account not found"));
         }
         
+        
         var account = new
         {
             Name = data!.Name,

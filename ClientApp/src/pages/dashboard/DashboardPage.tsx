@@ -1,4 +1,4 @@
-﻿import SideNavigation from "../components/pageElements/SideNavigation.tsx";
+﻿import SideNavigation from "components/pageElements/SideNavigation.tsx";
 
 const DashboardPage = () => {
     
