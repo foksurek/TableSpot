@@ -10,6 +10,7 @@
   position: absolute;
   top: 13vh;
   transform: translateX(33%);
+  z-index: 100000;
 }
 
 .searchBarPlaceholder {
@@ -109,26 +110,28 @@
 }
 
 .divButton {
+  outline: none !important;
   padding: 10px;
   border-radius: 5px;
   background: #007bff;
   color: white;
   font-weight: bold;
   transition: 0.2s;
+  &:focus {
+    outline: none !important;
+  }
   &:hover {
     cursor: pointer;
     background: #0056b3;
   }
 }
 .divButtonOutlined {
-  padding: 8px;
-  border-radius: 5px;
   background: white;
   color: #007bff;
-  font-weight: bold;
   transition: 0.2s;
+  border-radius: 5px;
+  padding: 8px;
   border: 2px solid #007bff;
-
   &:hover {
     cursor: pointer;
     background: #007bff;

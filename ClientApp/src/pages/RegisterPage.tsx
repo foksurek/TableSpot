@@ -20,8 +20,7 @@ const RegisterPage = () => {
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
     const [accountType, setAccountType] = useState(-1);
-
-
+    
     const handleRegister = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -67,7 +66,7 @@ const RegisterPage = () => {
         <>
 
             {error &&
-                <MainAlert Variant={errorVariant} Message={errorMessage}/>
+                <MainAlert Variant={errorVariant} Message={errorMessage} setError={setError}/>
             }
             <div className="loginBox">
                 <h2>Register Account</h2>

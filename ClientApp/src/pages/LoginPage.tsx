@@ -61,7 +61,7 @@ const LoginPage = () => {
     return (
         <>
             {error &&
-                <MainAlert Variant={errorVariant} Message={errorMessage}/>
+                <MainAlert Variant={errorVariant} Message={errorMessage} setError={setError}/>
             }
             <div className="loginBox">
                 <h2>Login</h2>

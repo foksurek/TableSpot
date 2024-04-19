@@ -236,14 +236,12 @@ a {
     justify-content: space-between;
     align-content: center;
     > h1, .divButton {
-      margin: auto 5% !important;
-    }
-    > h1 {
-      margin-left: 0 !important;
+      margin: auto 0 !important;
     }
   }
   .content {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     flex: 1;
   }
@@ -265,7 +263,7 @@ a {
     background: #e1e1e1;
     svg {
       fill: #e1e1e1;
-    
+
     }
   }
   > svg {
@@ -284,4 +282,32 @@ a {
   svg {
     margin-top: -45px;
   }
+}
+
+.addBusinessModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40%;
+  height: 85vh;
+  overflow-y: auto;
+  transform: translate(-50%, -50%);
+  background: #e1e1e1;
+  padding: 20px;
+  border-radius: 10px;
+  form {
+    display: flex;
+    flex-direction: column;
+    input, textarea, select, option {
+      margin: 5px 0;
+      resize: none;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ced4da;
+    }
+    textarea {
+      height: 100px;
+    }
+  }
+  
 }

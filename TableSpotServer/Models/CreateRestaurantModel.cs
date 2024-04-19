@@ -9,7 +9,7 @@ public class CreateRestaurantModel
     
     [Required, StringLength(512, MinimumLength = 3)] public string Description { get; set; } = null!;
     [Required, StringLength(256, MinimumLength = 3)] public string ImageUrl { get; set; } = null!;
-    [Required, Range(1, 99)] public int CategoryId { get; set; }
+    [Required, Range(1, 99, ErrorMessage = "Category field is invalid")] public int CategoryId { get; set; }
     [EmailAddress, StringLength(32, MinimumLength = 3)] public string? Email { get; set; }
     [StringLength(32, MinimumLength = 3)]public string? Website { get; set; }
     [Phone] public string? PhoneNumber { get; set; }
