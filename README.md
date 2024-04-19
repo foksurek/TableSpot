@@ -14,7 +14,7 @@ TableSpot is a prototype web application designed to assist restaurants in manag
 :star: - The star motivates me a lot!
 <br/>
 <a href="https://github.com/foksurek/TableSpot/stargazers">
- <img src="https://reporoster.com/stars/foksurek/TableSpot" alt="Stargazers repo roster for @foksurek/TableSpot">
+ <img src="https://reporoster.com/stars/dark/foksurek/TableSpot" alt="Stargazers repo roster for @foksurek/TableSpot">
 </a>
 </div>
 
