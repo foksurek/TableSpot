@@ -1,16 +1,6 @@
 ﻿import SideNavigation from "components/pageElements/SideNavigation.tsx";
-import { useAuth } from "contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
 
 const DashboardPage = () => {
-
-    const navigate = useNavigate();
-    const { user } = useAuth();
-    if (!user) {
-        navigate("/login");
-        return;
-    }
-    if (user.accountType === 1) navigate("/");
     
     return (
         <>

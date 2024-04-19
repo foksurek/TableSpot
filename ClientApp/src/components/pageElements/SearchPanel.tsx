@@ -54,7 +54,7 @@ const SearchPanel = (props: Props) => {
                                         {restaurant.name}
                                     </span>
                                         {/*TODO: Add rating*/}
-                                        <span className="searchResultRating">★★★★★</span>
+                                        <span className="searchResultRating rating">★★★★★</span>
                                         <span className="searchResultDescription">
                                         {restaurant.description}
                                     </span>

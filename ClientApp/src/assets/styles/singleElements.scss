@@ -50,7 +50,6 @@
 }
 
 .searchResultItem {
-  font-family: "Montserrat", sans-serif;
   display: grid;
   grid-template-columns: auto 4fr 1fr;
   grid-template-rows: 2rem 6rem;
@@ -85,10 +84,9 @@
     grid-area: 1 / 3 / 2 / 4;
   }
   .searchResultDescription {
-    font-family: "Hind", sans-serif;
     grid-area: 2 / 2 / 3 / 4;
     width: 80%;
-    max-height: 4.5rem;
+    max-height: 5rem;
     text-align: justify;
     overflow: clip;
     display: -webkit-box;
@@ -103,5 +101,37 @@
   font-weight: bold;
   &:hover {
     color: #0056b3;
+  }
+}
+
+.rating  {
+  color: #ffba27;
+}
+
+.divButton {
+  padding: 10px;
+  border-radius: 5px;
+  background: #007bff;
+  color: white;
+  font-weight: bold;
+  transition: 0.2s;
+  &:hover {
+    cursor: pointer;
+    background: #0056b3;
+  }
+}
+.divButtonOutlined {
+  padding: 8px;
+  border-radius: 5px;
+  background: white;
+  color: #007bff;
+  font-weight: bold;
+  transition: 0.2s;
+  border: 2px solid #007bff;
+
+  &:hover {
+    cursor: pointer;
+    background: #007bff;
+    color: white;
   }
 }

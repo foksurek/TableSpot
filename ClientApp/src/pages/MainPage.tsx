@@ -18,7 +18,9 @@ const MainPage = () => {
         }, {withCredentials: true}).then((response) => {
             setRecentlySearched(response.data);
         }).catch((error) => {
-            setRecentlySearched(error.response.data.message)
+            if (error.response.status === 404) {
+                setRecentlySearched("No recently searched restaurants");
+            }
         });
     }
 

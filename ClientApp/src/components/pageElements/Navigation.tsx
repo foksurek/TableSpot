@@ -1,5 +1,4 @@
 ﻿import {useState} from "react";
-import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchBarPlaceholder from "../SearchBarPlaceholder.tsx";
@@ -7,6 +6,7 @@ import SearchPanel from "./SearchPanel.tsx";
 import {useAuth} from "../../contexts/AuthContext.tsx";
 import axios from "axios";
 import API_URLS from "../../ApiConst/ApiUrls.ts";
+import DivButton from "../divButton.tsx";
 
 const Navigation = () => {
     const [isNavOpen, setIsNavOpen] = useState(false);
@@ -44,16 +44,16 @@ const Navigation = () => {
                 <SearchBarPlaceholder onClick={() => {setSearchModalOpen(true); closeNav()}}/>
                 <span>
                     {user &&
-                        <Button variant="outlined" onClick={logout} >Logout</Button>
+                        <DivButton onClick={logout} outline={true}>Logout</DivButton>
                     }
                     {user && user.accountType === 3 && 
-                        <Link to="/dashboard" onClick={closeNav}><Button variant="contained">Dashboard</Button></Link>
+                        <Link to="/dashboard" onClick={closeNav}><DivButton>Dashboard</DivButton></Link>
                     }
                     {!user &&    
-                        <Link to="/login" onClick={closeNav}><Button variant="outlined">Login</Button></Link>
+                        <Link to="/login" onClick={closeNav}><DivButton outline={true}>Login</DivButton></Link>
                     }
                     {user?.accountType == 1 || !user && 
-                        <Link to="" onClick={closeNav}><Button variant="contained">Add your business</Button></Link>
+                        <Link to="" onClick={closeNav}><DivButton>Add your business</DivButton></Link>
                     }
                 </span>
             </nav>

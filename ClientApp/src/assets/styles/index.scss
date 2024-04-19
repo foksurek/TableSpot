@@ -92,7 +92,7 @@ a {
   > span {
     width: 25%;
     display: block;
-    > a, button {
+    > a, div {
       float: right !important;
       font-weight: bold !important;
       margin: 0 10px !important;
@@ -228,7 +228,7 @@ a {
   }
 }
 .DashboardRestaurantsContainer {
-  width: 80%;
+  width: 70%;
   height: 80vh;
   margin: 5vh auto;
   .header {
@@ -238,17 +238,50 @@ a {
     > h1, .divButton {
       margin: auto 5% !important;
     }
-    .divButton {
-      padding: 10px;
-      border-radius: 5px;
-      background: #007bff;
-      color: white;
-      font-weight: bold;
-      transition: 0.2s;
-      &:hover {
-        cursor: pointer;
-        background: #0056b3;
-      }
+    > h1 {
+      margin-left: 0 !important;
     }
+  }
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+}
+
+
+.BusinessCard {
+  margin: 10px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  background: #f3f4f5;
+  border-radius: 10px;
+  padding-bottom: 10px;
+  transition: 0.1s transform;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.06);
+    background: #e1e1e1;
+    svg {
+      fill: #e1e1e1;
+    
+    }
+  }
+  > svg {
+    fill: #f3f4f5;
+  }
+  > .image {
+    width: 100%;
+    margin: auto;
+    height: 100px;
+    background-size: cover;
+    border-radius: 10px 10px 0 0;
+  }
+  > .title, .category, .rating {
+    margin: 0 15px;
+  }
+  svg {
+    margin-top: -45px;
   }
 }
