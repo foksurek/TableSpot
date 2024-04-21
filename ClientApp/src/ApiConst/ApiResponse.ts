@@ -1,4 +1,4 @@
-﻿export type restaurant = {
+﻿export type Restaurant = {
     id: number;
     name: string
     address: string
@@ -15,17 +15,17 @@
 
 export type RESTAURANT__GET_BY_NAME = {
     code: number;
-    data: Array<restaurant>
+    data: Array<Restaurant>
 }
 
 export type ACCOUNT__PARSE_RECENTLY_SEARCHED_RESTAURANTS = {
     code: number;
-    data: Array<restaurant>
+    data: Array<Restaurant>
 
 }
 
 export type ACCOUNT__GET_MY_RESTAURANTS = {
     code: number;
-    data: Array<restaurant>
+    data: Array<Restaurant>
 
 }
