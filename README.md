@@ -7,8 +7,16 @@
 TableSpot is a prototype web application designed to assist restaurants in managing their menus, tables, and reservations. It enables customers to easily browse menus, select available tables, and make reservations online.
 > [!CAUTION]
 > TableSpot is a project in development and is not yet fully functional.
+<br/>
+<br/>
 
-Currently making Restaurant dashboard
+<div align="center">
+:star: - The star motivates me a lot!
+<br/>
+<a href="https://github.com/foksurek/TableSpot/stargazers">
+ <img src="https://reporoster.com/stars/dark/foksurek/TableSpot" alt="Stargazers repo roster for @foksurek/TableSpot">
+</a>
+</div>
 
 ## Technologies
 
@@ -59,4 +67,3 @@ If you encounter any issues while using TableSpot or have suggestions for improv
 ## License
 
 TableSpot is licensed under the [MIT LICENSE](https://choosealicense.com/licenses/mit/) 
-
