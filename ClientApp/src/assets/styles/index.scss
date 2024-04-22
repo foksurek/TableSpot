@@ -309,5 +309,44 @@ a {
       height: 100px;
     }
   }
-  
+}
+
+
+.recentlySearchedContainer {
+  display: flex;
+  > svg {
+    font-weight: bold;
+    height: fit-content;
+    margin: auto;
+    padding: 10px;
+    font-size: 2rem;
+    transition: 0.2s;
+    &:hover {
+      color: #007bff;
+      cursor: pointer;
+    }
+  }
+}
+.recentlySearched {
+  display: flex;
+  width: 90%;
+  overflow: hidden;
+  &::-webkit-scrollbar {
+    height: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+  }
 }
