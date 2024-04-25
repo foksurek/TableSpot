@@ -1,17 +1,18 @@
 ﻿import SideNavigation from "components/pageElements/SideNavigation.tsx";
 import React, {useEffect, useState } from "react";
-import {ACCOUNT__GET_MY_RESTAURANTS} from "ApiConst/ApiResponse.ts";
-import BusinessCard from "components/dashboard/BusinessCard.tsx";
+import {ACCOUNT__GET_MY_RESTAURANTS, CATEGORY__GET_ALL} from "ApiConst/ApiResponse.ts";
+import BusinessCard from "components/BusinessCard.tsx";
 import axios from "axios";
 import API_URLS from "ApiConst/ApiUrls.ts";
 import DivButton from "components/divButton.tsx";
 import {Modal} from "@mui/material";
-import MainAlert from "../../components/MainAlert.tsx";
-import {ErrorVariants} from "../../objects/errorVariants.ts";
+import MainAlert from "components/MainAlert.tsx";
+import {ErrorVariants} from "objects/errorVariants.ts";
 
 const RestaurantsPage = () => {
 
     const [restaurants, setRestaurants] = useState<ACCOUNT__GET_MY_RESTAURANTS | undefined>();
+    const [categories, setCategories] = useState<CATEGORY__GET_ALL | undefined>();
     const [createModalOpen, setCreateModalOpen] = useState<boolean>(false);
     
     
@@ -34,10 +35,11 @@ const RestaurantsPage = () => {
     }
 
     const fetchData = async () => {
-        await axios.get(API_URLS.ACCOUNT.GET_MY_RESTAURANTS, {withCredentials: true}).then()
-            .then((response) => {
-                setRestaurants(response.data);
-            });
+        await axios.get(API_URLS.ACCOUNT.GET_MY_RESTAURANTS, {withCredentials: true})
+            .then((response) => setRestaurants(response.data));
+        
+        await axios.get(API_URLS.CATEGORY.GET_ALL, {withCredentials: true})
+            .then((response) => setCategories(response.data));
     }
     
     const createRestaurant = async (e: React.FormEvent) => {
@@ -90,8 +92,15 @@ const RestaurantsPage = () => {
                             setCategory(parseInt(e.target.value))
                         }}>
                             {/*TODO: Create endpoint to get categories and get them form it*/}
-                            <option value={-1} disabled>Select a category</option>
-                            <option value={1}>Pizza</option>
+                            {categories && <option value={-1}>Select a category</option>}
+                            {!categories && <option value={-1}>Can't fetch categories. Try again later</option>}
+                            {
+                                categories?.data.map((category) => {
+                                    return (
+                                        <option key={category.id} value={category.id}>{category.name}</option>
+                                    );
+                                })
+                            }
                         </select>
                         <label>Address</label>
                         <input required type="text" placeholder="Business address" value={address} onChange={(e) => {

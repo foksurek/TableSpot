@@ -1,4 +1,4 @@
-﻿:root { 
+﻿:root {
   @media only screen and (max-width: 1700px) {
     font-size: 14px;
   }
@@ -28,42 +28,48 @@
   }
 }
 
-.open {
- @media only screen and (max-width: 1700px){
- height: 340px;
-   > ul {
-     display: flex;
+.searchPanel {
+  @media only screen and (max-width: 1700px) {
+    width: 80% !important;
+  }
+}
 
-     li {
-       margin: 10px 0;
-       font-size: 1.2rem;
-     }
-     flex-direction: column;
-     justify-content: center;
-     width: fit-content;
-     text-align: center;
-     margin: 0 0 10px;
-   }
-   .searchBarPlaceholder {
-     display: flex;
-     width: 80% !important;
-   }
-   > span {
-     display: flex;
-     width: 80% !important;
-     justify-content: center;
-     flex-direction: column;
-     margin-top: 10px;
-     button {
-       width: 100%;
-       float: none;
-       margin: 0;
-     }
-     a {
-       margin: 5px 0 !important;
-     }
-   }
- }
+.open {
+  @media only screen and (max-width: 1700px){
+    height: 340px;
+    > ul {
+      display: flex;
+
+      li {
+        margin: 10px 0;
+        font-size: 1.2rem;
+      }
+      flex-direction: column;
+      justify-content: center;
+      width: fit-content;
+      text-align: center;
+      margin: 0 0 10px;
+    }
+    .searchBarPlaceholder {
+      display: flex;
+      width: 80% !important;
+    }
+    > span {
+      display: flex;
+      width: 80% !important;
+      justify-content: center;
+      flex-direction: column;
+      margin-top: 10px;
+      button {
+        width: 100%;
+        float: none;
+        margin: 0;
+      }
+      a {
+        margin: 5px 0 !important;
+      }
+    }
+  }
 }
 
 .searchResultItem {
@@ -140,7 +146,7 @@
 }
 .addBusinessModal {
   @media only screen and (max-width: 1700px) {
-   width: 80%; 
+    width: 80%;
   }
 }
 

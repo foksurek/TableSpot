@@ -11,4 +11,7 @@
   <ItemGroup>
     <Script Include="tsconfig.json" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\components\dashboard\" />
+  </ItemGroup>
 </Project>

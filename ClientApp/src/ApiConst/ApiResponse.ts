@@ -27,5 +27,12 @@ export type ACCOUNT__PARSE_RECENTLY_SEARCHED_RESTAURANTS = {
 export type ACCOUNT__GET_MY_RESTAURANTS = {
     code: number;
     data: Array<Restaurant>
+}
 
+export type CATEGORY__GET_ALL = {
+    code: number;
+    data: Array<{
+        id: number
+        name: string
+    }>
 }

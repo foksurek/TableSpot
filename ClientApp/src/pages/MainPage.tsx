@@ -1,12 +1,12 @@
 ﻿import {useEffect, useRef, useState} from "react";
-import {ACCOUNT__PARSE_RECENTLY_SEARCHED_RESTAURANTS} from "../ApiConst/ApiResponse.ts";
+import {ACCOUNT__PARSE_RECENTLY_SEARCHED_RESTAURANTS} from "ApiConst/ApiResponse.ts";
 import axios from "axios";
-import API_URLS from "../ApiConst/ApiUrls.ts";
-import {useAuth} from "../contexts/AuthContext.tsx";
+import API_URLS from "ApiConst/ApiUrls.ts";
+import {useAuth} from "contexts/AuthContext.tsx";
 import { Link } from "react-router-dom";
-import BusinessCard from "../components/dashboard/BusinessCard.tsx";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import BusinessCard from "components/BusinessCard";
 const MainPage = () => {
 
     const {user} = useAuth();

@@ -41,12 +41,16 @@ const SearchPanel = (props: Props) => {
         <>
             <Modal open={props.searchModalOpen} onClose={() => props.setSearchModalOpen(false)}>
                 <div className="searchPanel">
-                    <SearchBar onChange={(e) => {setSearchQuery(e.target.value)}}/>
+                    <SearchBar onChange={(e) => {
+                        setSearchQuery(e.target.value)
+                    }}/>
+                    <h2>Search results</h2>
                     <div className="searchResults">
-                        <h2>Search results</h2>
                         {searchResults?.data.map((restaurant) => {
                             return (
-                                <Link to={`restaurant/${restaurant.id}`} onClick={() => {props.setSearchModalOpen(false)}}>
+                                <Link to={`restaurant/${restaurant.id}`} onClick={() => {
+                                    props.setSearchModalOpen(false)
+                                }}>
                                     <div className="searchResultItem" key={restaurant.id}>
                                         <img onError={handleImageError} className="searchResultImage"
                                              src={restaurant.imageUrl} alt="restaurnt cover"/>
@@ -63,6 +67,7 @@ const SearchPanel = (props: Props) => {
                             )
                         })}
                     </div>
+                    <div className="showMore">Click here for more results</div>
                 </div>
             </Modal>
         </>
