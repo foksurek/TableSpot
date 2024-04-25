@@ -106,9 +106,9 @@
     }
   }
 }
-.loginBox {
-  .loginForm {
-    .loginFormButtons {
+.login-box {
+  .login-form {
+    .login-form-buttons {
       @media only screen and (max-width: 1700px) {
         flex-direction: column;
         button {
@@ -144,7 +144,7 @@
     }
   }
 }
-.addBusinessModal {
+.add-business-modal {
   @media only screen and (max-width: 1700px) {
     width: 80%;
   }

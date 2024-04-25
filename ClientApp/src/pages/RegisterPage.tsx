@@ -68,7 +68,7 @@ const RegisterPage = () => {
             {error &&
                 <MainAlert Variant={errorVariant} Message={errorMessage} setError={setError}/>
             }
-            <div className="loginBox">
+            <div className="login-box">
                 <h2>Register Account</h2>
                 <form onSubmit={handleRegister} className="loginForm">
                     <label>Email:</label>
@@ -111,7 +111,7 @@ const RegisterPage = () => {
                         <option value="3">Restaurant Owner</option>
 
                     </select>
-                    <div className="loginFormButtons">
+                    <div className="login-form-buttons">
                         <button type="submit">Register</button>
                     </div>
                 </form>

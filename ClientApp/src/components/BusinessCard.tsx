@@ -6,7 +6,7 @@ type Props = {
 }
 const BusinessCard = (props: Props) => {
     return (
-        <div className="BusinessCard">
+        <div className="business-card">
             <div className="image" style={{backgroundImage: `url(${props.restaurant.imageUrl})`, backgroundPosition: "center"}}></div>
             <SimpleWave/>
             <div className="title"><b>{props.restaurant.name}</b></div>

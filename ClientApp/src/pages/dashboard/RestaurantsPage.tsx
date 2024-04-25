@@ -80,7 +80,7 @@ const RestaurantsPage = () => {
         <>
         {error && <MainAlert Variant={errorVariant} Message={errorMessage} setError={setError}/>}
             <Modal open={createModalOpen} onClose={createModelHandler}>
-                <div className="addBusinessModal">
+                <div className="add-business-modal">
                     <h1>Create a new business</h1>
                     <form onSubmit={createRestaurant}>
                         <label>Name</label>
@@ -131,7 +131,7 @@ const RestaurantsPage = () => {
                 </div>
             </Modal>
             <SideNavigation/>
-            <main className="DashboardRestaurantsContainer">
+            <main className="dashboard-restaurants-container">
                 <div className="header">
                     <h1>My businesses</h1>
                     <DivButton onClick={createModelHandler}>Add New Business</DivButton>

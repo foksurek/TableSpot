@@ -56,8 +56,8 @@ const MainPage = () => {
     if (user)
         return(
             <>
-                <main className="pageContainer">
-                    <section id="recentlySearched">
+                <main className="page-container">
+                    <section id="recently-searched">
                         <h2>Recently searched</h2>
                         <div className="recentlySearchedContainer">
                             <ArrowBackIosIcon onClick={handleScrollLeft}/>

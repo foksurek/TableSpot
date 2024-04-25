@@ -104,7 +104,7 @@ main {
   }
 }
 
-.loginBox {
+.login-box {
   padding: 30px;
   margin: 12vh auto 0;
   border-radius: 10px;
@@ -215,7 +215,7 @@ main {
     }
   }
 }
-.DashboardRestaurantsContainer {
+.dashboard-restaurants-container {
   width: 70%;
   height: 80vh;
   margin-left: auto;
@@ -237,7 +237,7 @@ main {
 }
 
 
-.BusinessCard {
+.business-card {
   margin: 10px;
   width: 300px;
   display: flex;
@@ -273,7 +273,7 @@ main {
   }
 }
 
-.addBusinessModal {
+.add-business-modal {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -316,7 +316,7 @@ main {
     }
   }
 }
-.recentlySearched {
+.recently-searched {
   display: flex;
   width: 90%;
   overflow: hidden;
@@ -340,7 +340,7 @@ main {
   }
 }
 
-.dashboardPage {
+.dashboard-page {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

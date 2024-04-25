@@ -7,6 +7,8 @@ const RestaurantPage = () => {
     
     const { id } = useParams();
     
+    
+    // TODO: save on server
     const saveToLocalStorage = async () => {
         const existingList = localStorage.getItem('restaurants');
         

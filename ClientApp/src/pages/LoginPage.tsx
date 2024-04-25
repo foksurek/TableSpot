@@ -63,9 +63,9 @@ const LoginPage = () => {
             {error &&
                 <MainAlert Variant={errorVariant} Message={errorMessage} setError={setError}/>
             }
-            <div className="loginBox">
+            <div className="login-box">
                 <h2>Login</h2>
-                <form onSubmit={handleLogin} className="loginForm">
+                <form onSubmit={handleLogin} className="login-form">
                     <label>Email:</label>
                     <input type="email"
                            value={email}
@@ -78,9 +78,9 @@ const LoginPage = () => {
                            onChange={(e) => setPassword(e.target.value)}
                            required
                            maxLength={64}/>
-                    <div className="loginFormButtons">
-                        <button type="submit">Zaloguj</button>
-                        <span>Dont have account yet? <Link className="blueLink" to="/register">REGISTER NOW</Link></span>
+                    <div className="login-form-buttons">
+                        <button type="submit">Login</button>
+                        <span>Dont have account yet? <Link className="blue-link" to="/register">REGISTER NOW</Link></span>
                     </div>
                 </form>
             </div>
