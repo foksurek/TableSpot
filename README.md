@@ -2,7 +2,8 @@
 [![wakatime](https://wakatime.com/badge/github/foksurek/TableSpot.svg)](https://wakatime.com/badge/github/foksurek/TableSpot)
 [![100 - COMMITOW](https://img.shields.io/badge/100-COMMITOW-2ea44f)](https://100commitow.pl/)
 
-Unfortunately, through various fortuitous events, I was unable to make it. Thanks to everyone for their help and motivation. (march 1st - april 26th)
+Unfortunately, through various fortuitous events, I was unable to make it. Thanks to everyone for their help and motivation. 
+(march 1st - april 26th)
 I will finish it one day
 
 # TableSpot
