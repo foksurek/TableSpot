@@ -2,6 +2,10 @@
 [![wakatime](https://wakatime.com/badge/github/foksurek/TableSpot.svg)](https://wakatime.com/badge/github/foksurek/TableSpot)
 [![100 - COMMITOW](https://img.shields.io/badge/100-COMMITOW-2ea44f)](https://100commitow.pl/)
 
+Unfortunately, through various fortuitous events, I was unable to make it. Thanks to everyone for their help and motivation.
+
+I will finish it one day
+
 # TableSpot
 
 TableSpot is a prototype web application designed to assist restaurants in managing their menus, tables, and reservations. It enables customers to easily browse menus, select available tables, and make reservations online.
